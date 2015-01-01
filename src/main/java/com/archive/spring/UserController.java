@@ -13,57 +13,54 @@ import com.archive.spring.service.UserService;
 
 @Controller
 public class UserController {
-	
-	private UserService userService;
-	
-	@Autowired(required=true)
-	@Qualifier(value="userService")
-	public void setUserService(UserService ps){
-		this.userService = ps;
-	}
-	
-	
-	
-	//For add and update person both
-	@RequestMapping(value= "/user/add", method = RequestMethod.POST)
-	public String addPerson(@ModelAttribute("user") User p,Model model){
-	
-		this.userService.addUser(p);
-                model.addAttribute("user", p);
-                model.addAttribute("listUsers", this.userService.listUser());
-                return "user";
-		
-	}
 
- 
-    @RequestMapping(value="/user/connect", method = RequestMethod.POST)
-    public String editUser(@ModelAttribute("user")User u, Model model){
-        User user = (User) this.userService.getUser(u.getEmail(),u.getPass());
+    private UserService userService;
+
+    @Autowired(required = true)
+    @Qualifier(value = "userService")
+    public void setUserService(UserService ps) {
+        this.userService = ps;
+    }
+
+    @RequestMapping(value = "/user/add", method = RequestMethod.POST)
+    public String addPerson(@ModelAttribute("user") User p, Model model) {
+        this.userService.addUser(p);
+        model.addAttribute("user", p);
+        model.addAttribute("listUsers", this.userService.listUser());
+        return "user";
+
+    }
+
+    @RequestMapping(value = "/user/connect", method = RequestMethod.POST)
+    public String editUser(@ModelAttribute("user") User u, Model model) {
+        User user = (User) this.userService.getUser(u.getEmail(), u.getPass());
         System.out.println(u);
-        if(user == null)
+        if (user == null) {
             return "inscription";
-        else
+        } else {
             model.addAttribute("user", user);
+        }
+        model.addAttribute("listUsers", this.userService.listUser());
         return "user";
     }
-    
+
     @RequestMapping("/")
-    public String mainc(Model model){
-        if(model.containsAttribute("user")){
+    public String mainc(Model model) {
+        if (model.containsAttribute("user")) {
             model.addAttribute("user", new User());
             return "redirect:/user";
-        }else{
+        } else {
             model.addAttribute("user", new User());
             return "inscription";
         }
-        
+
     }
-    
+
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String listUsers(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("listUsers", this.userService.listUser());
         return "user";
     }
-	
+
 }
