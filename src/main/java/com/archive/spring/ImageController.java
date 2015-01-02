@@ -33,7 +33,7 @@ public class ImageController {
     @RequestMapping(value = "/image", method = RequestMethod.GET)
     public String addPerson( Model model) {
 
-        model.addAttribute("image", "not eyt ready");
+        model.addAttribute("image", "/resources/pic.jpg");
         return "image";
 
     }
