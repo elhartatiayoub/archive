@@ -6,11 +6,16 @@
 
 package com.archive.spring.dao;
 
-/**
- *
- * @author Iob
- */
+import com.archive.spring.model.Image;
+import com.archive.spring.model.User;
+import java.util.List;
+
+
 public interface ImageDao {
-    //TODO 
+        public void addImage(Image img);
+	public void updateImage(Image img);
+        public Image getImageById(int id);
+        public List<Image> getAllImages();
+	public void removeImage(int id);
     
 }

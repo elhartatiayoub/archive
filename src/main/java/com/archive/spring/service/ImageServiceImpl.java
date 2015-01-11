@@ -7,6 +7,8 @@
 package com.archive.spring.service;
 
 import com.archive.spring.dao.ImageDao;
+import com.archive.spring.model.Image;
+import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,14 +26,32 @@ public class ImageServiceImpl implements ImageService{
         this.imageDao = imageDao;
     }
     
-    //exemple
-    
-//    @Override
-//    @Transactional
-//    public User getUser(String email, String pass) {
-//        
-//        return this.userDAO.getUser(email, pass);
-//    }
+   
+
+    @Override
+    public void addImage(Image img) {
+            this.imageDao.addImage(img);
+    }
+
+    @Override
+    public void updateImage(Image img) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Image getImageById(int id) { 
+        return  this.imageDao.getImageById(id);
+    }
+
+    @Override
+    public List<Image> getAllImages() {
+            return this.imageDao.getAllImages();
+    }
+
+    @Override
+    public void removeImage(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     

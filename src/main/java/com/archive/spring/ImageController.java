@@ -5,6 +5,7 @@
  */
 package com.archive.spring;
 
+import com.archive.spring.model.Image;
 import com.archive.spring.model.User;
 import com.archive.spring.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +31,28 @@ public class ImageController {
         this.imageService = imageService;
     }
 
-    @RequestMapping(value = "/image", method = RequestMethod.GET)
-    public String addPerson( Model model) {
-
-        model.addAttribute("image", "/resources/pic.jpg");
+    @RequestMapping(value = "/image/add", method = RequestMethod.GET)
+    public String addImage(@ModelAttribute("image")Image img,Model model) {
+        this.imageService.addImage(img);
+        model.addAttribute("images", this.imageService.getAllImages());
         return "image";
 
     }
+    
+     
+    
+    @RequestMapping(value = "/image", method = RequestMethod.GET)
+    public String listImages(Model model) {
+        model.addAttribute("image", new Image());
+        model.addAttribute("listImages", this.imageService.getAllImages());
+        return "image";
+    }@RequestMapping(value = "/addImage", method = RequestMethod.GET)
+    public String addImages(Model model) {
+        return "addImage";
+    }
+    
+    
+    
+    
+    
 }
