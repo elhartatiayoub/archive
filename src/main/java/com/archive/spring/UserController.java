@@ -33,7 +33,7 @@ public class UserController {
 
     @RequestMapping(value = "/user/connect", method = RequestMethod.POST)
     public String editUser(@ModelAttribute("user") User u, Model model) {
-        User user = (User) this.userService.getUser(u.getEmail(), u.getPass());
+        User user = (User) this.userService.getUser(u.getEmail(), u.getPassHash());
         System.out.println(u);
         if (user == null) {
             return "inscription";

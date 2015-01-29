@@ -44,13 +44,13 @@
 	</tr>
 	<tr>
 		<td>
-			<form:label path="pass">
+			<form:label path="passHash">
 				<spring:message text="pass"/>
                                 
 			</form:label>
 		</td>
 		<td>
-			<form:input path="pass" />
+			<form:input path="passHash" />
 		</td>
 	</tr>
 	<tr>
@@ -84,13 +84,13 @@
 	</tr>
 	<tr>
 		<td>
-			<form:label path="pass">
+			<form:label path="passHash">
 				<spring:message text="pass"/>
                                 
 			</form:label>
 		</td>
 		<td>
-			<form:input path="pass" />
+			<form:input path="passHash" />
 		</td>
 	</tr>
 	<tr>

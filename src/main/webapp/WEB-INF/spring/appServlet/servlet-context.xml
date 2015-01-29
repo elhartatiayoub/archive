@@ -29,7 +29,7 @@
 		destroy-method="close">
 		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<beans:property name="url"
-			value="jdbc:mysql://localhost:3306/test" />
+			value="jdbc:mysql://localhost:3306/ImageBank" />
 		<beans:property name="username" value="root" />
 		<beans:property name="password" value="" />
 	</beans:bean>
@@ -42,6 +42,8 @@
 			<beans:list>
 				<beans:value>com.archive.spring.model.User</beans:value>
                                 <beans:value>com.archive.spring.model.Image</beans:value>
+                                <beans:value>com.archive.spring.model.Role</beans:value>
+                                <beans:value>com.archive.spring.model.Comment</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -64,6 +66,12 @@
         <beans:bean id="imageDAO" class="com.archive.spring.dao.ImageDaoImpl">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
+<!--        <beans:bean id="roleDAO" class="com.archive.spring.dao.RoleDaoImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+        <beans:bean id="commentDAO" class="com.archive.spring.dao.CommentDaoImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>-->
         
         
 <!--        services Beans-->
