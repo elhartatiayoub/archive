@@ -56,6 +56,13 @@ public class UserController {
         }
 
     }
+    
+      @RequestMapping("/forgot")
+    public String mainb( ) {
+            return "forgot";
+
+    }
+    
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String listUsers(Model model) {

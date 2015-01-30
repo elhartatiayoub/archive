@@ -21,40 +21,33 @@
 	</style>
     </head>
     <body>
-        <h1>gghjklhlj</h1>
-    <form:form action="${addAction}" commandName="addImage">
-    <legend>Ajoutez votre Image</legend>
-				<div class="span7">
-					<label for="nom">Nom de l'image:</label>
-					<html:text property="name" styleClass="span4" ></html:text> <br>
-				</div>
-				<div class="span7">
-					<label for="nom">Description</label>
-					<html:text property="descr" styleClass="span4" ></html:text> <br>
-				</div>
-				<div class="span7">
-					<label for="nom">Ville</label>
-					<html:date property="ville" styleClass="span4" ></html:date> <br>
-				</div>
-				<div class="span7">
-					<label for="nom">Telephone du restaurant</label>
-					<html:text property="tel_restau" styleClass="span4" ></html:text> <br>
-				</div>
-				<div class="span7">
-					<label for="nom">Service du restaurant</label>
-					<html:text property="service_restau" styleClass="span4" ></html:text> <br>
-				</div>
-				<div class="span7">
-					<label for="nom">Type de cuisine</label>
-					<html:text property="type_cuisine" styleClass="span4" ></html:text> <br>
-				</div>
-				<div class="span7">
-					<label for="nom">Site-Web</label>
-					<html:text property="site_restau" styleClass="span4" value="http://"></html:text> <br>
-				</div>
-				<div class="span7">
-					<html:submit  value="Suivant"></html:submit>
-				</div>
-   </form:form>
+        <h2>Inscription</h2>
+        <form:form method="post" action="/image/add" commandName="addImage">
+     
+            <table>
+                <tr>
+                    <td><form:label path="title">Titre</form:label></td>
+                    <td><form:input path="title" /></td>
+                    <td><form:errors path="title" cssClass="error" /></td>
+                </tr>
+                
+                <tr>
+                    <td><form:label path="pravacy">Privacy</form:label></td>
+                    <td><form:input path="pravacy" /></td>
+                    <td><form:errors path="pravacy" cssClass="error" /></td>
+ 
+                </tr>
+                <tr>
+                    <td><form:label path="url">URL</form:label></td>
+                    <td><form:input path="url" /></td>
+                    <td><form:errors path="url" cssClass="error" /></td>
+                </tr>
+                <tr>
+                    <td><form:errors path="*" /></td>
+                    <td colspan="2"><input type="submit" value="Ajouter" /></td>
+                </tr>
+            </table>
+     
+        </form:form>
     </body>
 </html>

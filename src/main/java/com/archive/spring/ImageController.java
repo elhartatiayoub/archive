@@ -31,7 +31,7 @@ public class ImageController {
         this.imageService = imageService;
     }
 
-    @RequestMapping(value = "/image/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/image/add", method = RequestMethod.POST)
     public String addImage(@ModelAttribute("image")Image img,Model model) {
         this.imageService.addImage(img);
         model.addAttribute("images", this.imageService.getAllImages());
@@ -46,8 +46,10 @@ public class ImageController {
         model.addAttribute("image", new Image());
         model.addAttribute("listImages", this.imageService.getAllImages());
         return "image";
-    }@RequestMapping(value = "/addImage", method = RequestMethod.GET)
+    }
+    @RequestMapping(value = "/addImage", method = RequestMethod.GET)
     public String addImages(Model model) {
+        model.addAttribute("addImage",new Image());
         return "addImage";
     }
     

@@ -13,10 +13,6 @@
 	</style>
 </head>
 <body>
-
-
-
-
 <h3>${image}</h3>
 <img src="${webappRoot}/resources/pic.jpg"  >${webappRoot}/resources </img>
 
