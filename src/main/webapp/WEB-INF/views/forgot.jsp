@@ -20,7 +20,7 @@
 
         <div id="wrap">
 
-            <%@include file="body_header.jsp" %>
+            <%@include file="headerDisc.jsp" %>
            <div class="account-container btm10">
 
 	<div class="form-content clearfix">
@@ -28,21 +28,19 @@
 		<form:form action="/forgotpass" modelAttribute="ForgotPass">
 
 			<h1><i class="iconbig-lock"></i> Sign In</h1>	
-            
 			<div class="login-fields">
-            
 				<p>Reset your password</p>
 				<div class="field">
-                                    <form:label path="email" for="email">Email</form:label>
-                                    <form:input path="email"  id="email" placeholder="Email address" type="email" class="email-field"/>					
+					 <form:label path="email">Mail de recuperation:</form:label>
+                                         <form:input path="email"  id="email" placeholder="Email address" class="login email-field" required=""/>					
 				</div> <!-- /password -->
 			</div> <!-- /login-fields -->			
 
 			<div class="login-actions">
-                            <form:button type="submit" class="btn-signin btn btn-primary" > Submit </form:button> 
-                                <a href="/signin" class="btn-signin btn">Cancel</a>
+                            <form:button type="submit" value="Sign in" class="btn-signin btn btn-primary" >Submit</form:button>
+                                <a href="#" class="btn-signin btn">Cancel</a>
 			</div> <!-- .actions -->
-                        </form:form>
+                </form:form>
 
 	   </div> <!-- /form-content -->
 

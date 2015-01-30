@@ -20,14 +20,11 @@
         %>
     </head>
     <body>
-        <h1>
-            Inscription
-        </h1>
-        <%@include file="body_header.jsp"%>
-
+        <%@include file="headerDisc.jsp"%>
+<div class="account-container">
         <div class="form-content clearfix">
 
-            <form:form  modelAttribute="signUpUser" method = "POST" >
+            <form:form  modelAttribute="UserInscriptionForm" method = "POST" action="index">
 
                 <h1><i class="iconbig-note-write"></i> Sign Up</h1>	
 
@@ -57,7 +54,7 @@
                 </div> <!-- /login-fields -->			
 
                 <div class="login-actions">
-                    <form:input path="submit"  value="Sign up" class="btn-signin btn btn-primary" />
+                    <form:button type="submit"  value="Sign up" class="btn-signin btn btn-primary" >Submit</form:button>
                     <a href="#" class="btn-signin btn">Cancel</a>
 
                 </div> <!-- .actions -->
@@ -65,13 +62,14 @@
 
                 <div class="login-social marg10-btm">
                     <p>Sign up using social network:</p>
-                    <a href="#" class="btn"><img src="img/twitter-18.png" /> Signup with twitter</a>
-                    <a href="#" class="btn"><img src="img/facebook-18.png" /> Signup with facebook</a>			
+                    <a href="#" class="btn"><img src="/SpringMVCHibernate/resources/img/twitter-18.png" /> Signup with twitter</a>
+                    <a href="#" class="btn"><img src="/SpringMVCHibernate/resources/img/facebook-18.png" /> Signup with facebook</a>			
                 </div>
             </form:form>
         </div> <!-- /form-content -->
 
     </div> <!-- /account-container -->
+
 
     <%@ include file="footer.jsp" %>
 
