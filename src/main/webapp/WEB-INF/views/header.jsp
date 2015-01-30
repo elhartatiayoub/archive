@@ -23,6 +23,6 @@
     <![endif]-->
 
     <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/SpringMVCHibernate/resources/img/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/SpringMVCHibernate/resources/img/favicon.ico" type="image/x-icon" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
