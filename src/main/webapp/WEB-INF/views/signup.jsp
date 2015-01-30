@@ -23,7 +23,7 @@
         <h1>
             Inscription
         </h1>
-        <%@include file="body_header.jsp"%>
+        <%@include file="headerDisc.jsp"%>
 
         <div class="form-content clearfix">
 
