@@ -23,7 +23,7 @@ import org.springframework.stereotype.Repository;
  *
  * @author Iob
  */
-@Repository
+@Repository("imageDAO")
 public class ImageDAOImpl implements ImageDao {
 
     private static final Logger logger = LoggerFactory.getLogger(ImageDAOImpl.class);

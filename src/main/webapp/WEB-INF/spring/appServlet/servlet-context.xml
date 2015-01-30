@@ -35,7 +35,7 @@
 	</beans:bean>
 
 	<!-- Hibernate 4 SessionFactory Bean definition -->
-	<beans:bean id="SessionFactory"
+	<beans:bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
 		<beans:property name="annotatedClasses">
@@ -44,6 +44,7 @@
                                 <beans:value>com.archive.spring.model.Image</beans:value>
                                 <beans:value>com.archive.spring.model.Role</beans:value>
                                 <beans:value>com.archive.spring.model.Comment</beans:value>
+                                <beans:value>com.archive.spring.model.Category</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -61,27 +62,29 @@
         
 <!--	DAO Beans-->
         
+        <context:component-scan base-package="com.archive.spring" />
         
-	<beans:bean id="userDAO" class="com.archive.spring.dao.impl.UserDAOImpl"/>
-        <beans:bean id="imageDAO" class="com.archive.spring.dao.impl.ImageDaoImpl"/>
-        <beans:bean id="roleDAO" class="com.archive.spring.dao.impl.RoleDaoImpl"/>
-        <beans:bean id="commentDAO" class="com.archive.spring.dao.impl.CommentDaoImpl"/>
-        <beans:bean id="categoryDAO" class="com.archive.spring.dao.impl.CategoryDaoImpl"/>
+        
+<!--        <beans:bean id="imageDAO" class="com.archive.spring.dao.impl.ImageDAOImpl"/>
+        <beans:bean id="roleDAO" class="com.archive.spring.dao.impl.RoleDAOImpl"/>
+        <beans:bean id="commentDAO" class="com.archive.spring.dao.impl.CommentDAOImpl"/>
+        <beans:bean id="categoryDAO" class="com.archive.spring.dao.impl.CategoryDAOImpl"/>-->
         
         
 <!--        services Beans-->
         
         
-	<beans:bean id="userService" class="com.archive.spring.service.UserServiceImpl"/>
-        <beans:bean id="imageService" class="com.archive.spring.service.ImageServiceImpl"/>
+<!--	<beans:bean id="userService" class="com.archive.spring.service.UserServiceImpl"/>
+        <beans:bean id="imageService" class="com.archive.spring.service.ImageServiceImpl"/>-->
         
 <!--        Controller to be user package-->
 
 	<context:component-scan base-package="com.archive.spring" />
+        
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 	<beans:bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+		<beans:property name="sessionFactory" ref="sessionFactory" />
 	</beans:bean>
 
 

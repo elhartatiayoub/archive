@@ -10,13 +10,13 @@ import com.archive.spring.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    @Qualifier(value = "userDAO")
     private UserDAO userDAO;
-
+    
+    
     public void setUserDAO(UserDAO userDAO) {
         this.userDAO = userDAO;
     }

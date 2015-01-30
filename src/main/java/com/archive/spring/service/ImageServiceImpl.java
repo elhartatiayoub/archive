@@ -19,11 +19,10 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Iob
  */
 
-@Service
+@Service("imageService")
 public class ImageServiceImpl implements ImageService{
     
     @Autowired
-    @Qualifier(value = "imageDao")
     private ImageDao imageDao;
 
     
