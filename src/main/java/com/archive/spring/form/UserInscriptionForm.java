@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.archive.spring.form;
 
 import javax.validation.constraints.NotNull;
@@ -30,5 +25,44 @@ public class UserInscriptionForm {
     @Size(min = 6, max = 32)
     @NotNull
     String confPass;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getConfPass() {
+        return confPass;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setConfPass(String confPass) {
+        this.confPass = confPass;
+    }
+
+    @Override
+    public String toString() {
+        return "UserInscriptionForm{" + "email=" + email + ", username=" + username + ", password=" + password + ", confPass=" + confPass + '}';
+    }
+    
+    
     
 }
