@@ -46,7 +46,9 @@ public class ImageController {
         model.addAttribute("image", new Image());
         model.addAttribute("listImages", this.imageService.getAllImages());
         return "image";
-    }@RequestMapping(value = "/addImage", method = RequestMethod.GET)
+    }
+    
+    @RequestMapping(value = "/addImage", method = RequestMethod.GET)
     public String addImages(Model model) {
         return "addImage";
     }
