@@ -5,7 +5,7 @@
  */
 package com.archive.spring.shiro;
 
-import com.local.ask.model.User;
+import com.archive.spring.model.User;
 import java.io.Serializable;
 
 /**
@@ -38,9 +38,9 @@ public class UserPrincipal implements Serializable {
     }
 
     public UserPrincipal(User user) {
-        displayName = user.getDisplayName();
+        displayName = user.getName();
         email = user.getEmail();
-        id = user.getId();
+        id = new Integer(user.getORMID());
     }
 
     public Integer getId() {

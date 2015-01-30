@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.archive.spring.model.User;
 import com.archive.spring.service.UserService;
+import com.archive.spring.shiro.StringHash;
 import javax.validation.Valid;
 
 @Controller
@@ -24,18 +25,18 @@ public class UserController {
         this.userService = ps;
     }
 
-    @RequestMapping(value = "/user/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/SignUp", method = RequestMethod.POST)
     public String addPerson(@Valid @ModelAttribute("user") UserInscriptionForm p, Model model) {
         User user = new User();
         if (p.isTermsAndPolicy() && p.getConfPass().equals(p.getPassword())) {
             user.setEmail(p.getEmail());
-            user.setPassHash(null);
+            user.setPassHash(StringHash.hash(p.getPassword()));
+            user.setName(p.getUsername());
             this.userService.addUser(user);
-            model.addAttribute("user", p);
-            model.addAttribute("listUsers", this.userService.listUser());
-            return "user";
-        }else{
+            model.addAttribute("user", user);
             return "index";
+        }else{
+            return "redirect:/fail";
         }
 
     }

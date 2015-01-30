@@ -32,19 +32,19 @@ public class StringHash {
         return ret.toString(16);
     }
 
-    public static String hash(UserinscriptionForm signUpUser) {
-        return hash(signUpUser.getPassword() + signUpUser.getEmail().trim().toLowerCase());
-    }
-
-    public static String hashTime(SignUpUser signUpUser) {
-        return hash(new Timestamp(new java.util.Date().getTime()).toString() + signUpUser.getPassword() + signUpUser.getEmail().trim().toLowerCase());
-    }
-
-    public static String hash(LoginUser loginUser) {
-        return hash(loginUser.getPassword() + loginUser.getEmail().trim().toLowerCase());
-    }
-
-    public static String hash(ReconfirmUser reconfirmUser) {
-        return hash(new Timestamp(new java.util.Date().getTime()).toString() + reconfirmUser.hashCode() + reconfirmUser.getEmail().trim().toLowerCase());
-    }
+//    public static String hash(UserinscriptionForm signUpUser) {
+//        return hash(signUpUser.getPassword() + signUpUser.getEmail().trim().toLowerCase());
+//    }
+//
+//    public static String hashTime(SignUpUser signUpUser) {
+//        return hash(new Timestamp(new java.util.Date().getTime()).toString() + signUpUser.getPassword() + signUpUser.getEmail().trim().toLowerCase());
+//    }
+//
+//    public static String hash(LoginUser loginUser) {
+//        return hash(loginUser.getPassword() + loginUser.getEmail().trim().toLowerCase());
+//    }
+//
+//    public static String hash(ReconfirmUser reconfirmUser) {
+//        return hash(new Timestamp(new java.util.Date().getTime()).toString() + reconfirmUser.hashCode() + reconfirmUser.getEmail().trim().toLowerCase());
+//    }
 }

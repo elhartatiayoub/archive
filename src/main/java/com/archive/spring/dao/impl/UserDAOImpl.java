@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,10 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void addUser(User u) {
         Session session = this.sessionFactory.getCurrentSession();
+        Transaction t = session.beginTransaction();
         System.out.println(u);
         session.persist(u);
+        t.commit();
         logger.info("Person saved successfully, Person Details=" + u);
     }
 

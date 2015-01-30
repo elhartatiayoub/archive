@@ -1,20 +1,28 @@
 package com.archive.spring.service;
 
+import com.archive.spring.dao.RoleDAO;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.archive.spring.dao.UserDAO;
+import com.archive.spring.model.Role;
 import com.archive.spring.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
-    @Autowired
+    @Autowired  
     private UserDAO userDAO;
+    
+    @Autowired
+    private RoleDAO roleDAO;
+
+    public void setRoleDAO(RoleDAO roleDAO) {
+        this.roleDAO = roleDAO;
+    }
     
     
     public void setUserDAO(UserDAO userDAO) {
@@ -24,6 +32,8 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void addUser(User p) {
+        Role r = roleDAO.getRoleByName("user");
+        p.setRole(r);
         this.userDAO.addUser(p);
     }
 
