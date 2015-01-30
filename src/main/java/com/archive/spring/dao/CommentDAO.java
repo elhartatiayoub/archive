@@ -14,7 +14,9 @@ import java.util.List;
  * @author Iob
  */
 public interface CommentDAO {
-    List<Comment> getCommentByImage(Image image);
+    public List<Comment> getCommentByImage(Image image);
+    public boolean addComment(String text,int imageID);
+    public boolean deleteComment(int commentID);
     
     
 }

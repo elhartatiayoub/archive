@@ -15,7 +15,7 @@
     <link href="/SpringMVCHibernate/resources/css/style.css" rel="stylesheet" />
     <link href="/SpringMVCHibernate/resources/css/icon-style.css" rel="stylesheet" />
     <link href="/SpringMVCHibernate/resources/css/bootstrap-responsive.css" rel="stylesheet" />
-	<link href="source/jquery.fancybox.css" rel="stylesheet" />
+    <link href="/SpringMVCHibernate/resources/source/jquery.fancybox.css" rel="stylesheet" />
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -23,6 +23,6 @@
     <![endif]-->
 
     <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/SpringMVCHibernate/resources/img/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/SpringMVCHibernate/resources/img/favicon.ico" type="image/x-icon" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

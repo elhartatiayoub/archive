@@ -1,5 +1,6 @@
 package com.archive.spring;
 
+import com.archive.spring.form.UserInscriptionForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -24,11 +25,18 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/add", method = RequestMethod.POST)
-    public String addPerson(@Valid @ModelAttribute("user") User p, Model model) {
-        this.userService.addUser(p);
-        model.addAttribute("user", p);
-        model.addAttribute("listUsers", this.userService.listUser());
-        return "user";
+    public String addPerson(@Valid @ModelAttribute("user") UserInscriptionForm p, Model model) {
+        User user = new User();
+        if (p.isTermsAndPolicy() && p.getConfPass().equals(p.getPassword())) {
+            user.setEmail(p.getEmail());
+            user.setPassHash(null);
+            this.userService.addUser(user);
+            model.addAttribute("user", p);
+            model.addAttribute("listUsers", this.userService.listUser());
+            return "user";
+        }else{
+            return "index";
+        }
 
     }
 
@@ -52,17 +60,16 @@ public class UserController {
             return "redirect:/user";
         } else {
             model.addAttribute("user", new User());
-            return "inscription";
+            return "signup";
         }
 
     }
-    
-      @RequestMapping("/forgot")
-    public String mainb( ) {
-            return "forgot";
+
+    @RequestMapping("/forgot")
+    public String mainb() {
+        return "forgot";
 
     }
-    
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String listUsers(Model model) {

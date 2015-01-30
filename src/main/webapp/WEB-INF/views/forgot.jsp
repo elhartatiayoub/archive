@@ -7,7 +7,7 @@
 <%@page import="com.archive.spring.form.ForgotPass"%>
 <%@ include file="import.jsp" %>
 <!DOCTYPE html>
-<html lang="en"> <!--<![endif]-->
+<html lang="en">
     <head>
         <%@ include file="header.jsp" %>
         <%
@@ -25,7 +25,7 @@
 
 	<div class="form-content clearfix">
     
-		<form:form action="forgot" modelAttribute="ForgotPass">
+		<form:form action="/forgotpass" modelAttribute="ForgotPass">
 
 			<h1><i class="iconbig-lock"></i> Sign In</h1>	
             
@@ -33,14 +33,14 @@
             
 				<p>Reset your password</p>
 				<div class="field">
-					 <form:label path="email">Mail de recuperation:</form:label>
-                                         <form:input path="email"  id="email" placeholder="Email address" />					
+                                    <form:label path="email" for="email">Email</form:label>
+                                    <form:input path="email"  id="email" placeholder="Email address" type="email" class="email-field"/>					
 				</div> <!-- /password -->
 			</div> <!-- /login-fields -->			
 
 			<div class="login-actions">
-                                <form:input path="submit"  value="Sign in" class="btn-signin btn btn-primary" />
-                                <a href="signin.jsp" class="btn-signin btn">Cancel</a>
+                            <form:button type="submit" class="btn-signin btn btn-primary" > Submit </form:button> 
+                                <a href="/signin" class="btn-signin btn">Cancel</a>
 			</div> <!-- .actions -->
                         </form:form>
 
