@@ -7,7 +7,7 @@
 <%@page import="com.archive.spring.form.ForgotPass"%>
 <%@ include file="import.jsp" %>
 <!DOCTYPE html>
-<html lang="en"> <!--<![endif]-->
+<html >
     <head>
         <%@ include file="header.jsp" %>
         <%
@@ -28,21 +28,19 @@
 		<form:form action="forgot" modelAttribute="ForgotPass">
 
 			<h1><i class="iconbig-lock"></i> Sign In</h1>	
-            
 			<div class="login-fields">
-            
 				<p>Reset your password</p>
 				<div class="field">
 					 <form:label path="email">Mail de recuperation:</form:label>
-                                         <form:input path="email"  id="email" placeholder="Email address" />					
+                                         <form:input path="email"  id="email" placeholder="Email address" class="login email-field" required=""/>					
 				</div> <!-- /password -->
 			</div> <!-- /login-fields -->			
 
 			<div class="login-actions">
-                                <form:input path="submit"  value="Sign in" class="btn-signin btn btn-primary" />
-                                <a href="signin.jsp" class="btn-signin btn">Cancel</a>
+                            <form:button type="submit" value="Sign in" class="btn-signin btn btn-primary" >Submit</form:button>
+                                <a href="/signin" class="btn-signin btn">Cancel</a>
 			</div> <!-- .actions -->
-                        </form:form>
+                </form:form>
 
 	   </div> <!-- /form-content -->
 

@@ -11,11 +11,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="index.html"><img src="img/logo.png" /></a>
+          <a class="brand" href="index.jsp"><img src="/SpringMVCHibernate/resources/img/logo.png" /></a>
           <div class="nav-collapse">
             <ul class="nav">
 			  <li class="divider-vertical"></li>
-              <li><a href="about.html">About</a></li>
+              <li><a href="about.jsp">About</a></li>
 			  <li class="divider-vertical"></li>
               <form class="navbar-search pull-left" action="" />
                 <input type="text" class="search-query span2" placeholder="Search" required="" />

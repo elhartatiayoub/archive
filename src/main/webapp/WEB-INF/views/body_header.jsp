@@ -12,7 +12,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="index.jsp"><img src="img/logo.png" /></a>
+          <a class="brand" href="index.jsp"><img src="/SpringMVCHibernate/resources/img/logo.png" /></a>
           <div class="nav-collapse">
             <ul class="nav">
 			  <li class="divider-vertical"></li>
