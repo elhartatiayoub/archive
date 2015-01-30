@@ -38,7 +38,7 @@
                       </ul>
                       <div class="tab-content">
                         <div class="tab-pane active" id="profile"><!-- Profile -->
-                          <form:form class="form-horizontal" >
+                          <form:form class="form-horizontal" action="/profil">
                             <div class="control-group">
                               <form:label path="nom" class="control-label">Your Name</form:label>
                               <div class="controls">
@@ -78,7 +78,7 @@
                         </div>
                         
                         <div class="tab-pane" id="password"><!-- Password -->
-                          <form:form class="form-horizontal" >
+                          <form:form class="form-horizontal" action="/profil">
                             <div class="control-group">
                               <form:label path="oldpass" class="control-label">Enter Old Password</form:label>
                               <div class="controls">
