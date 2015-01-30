@@ -3,6 +3,7 @@ package com.archive.spring.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="Image")
@@ -34,6 +35,18 @@ public class Image implements Serializable {
 	
 	@Column(name="Url", nullable=true, length=255)	
 	private String url;
+	
+	@Column(name="Description", nullable=true, length=255)	
+	private String description;
+	
+	@Column(name="Downloads", nullable=false, length=11)	
+	private int downloads;
+	
+	@ElementCollection	
+	@JoinTable(name="Image_keywords", joinColumns={ @JoinColumn(name="ImageID") })	
+	@org.hibernate.annotations.IndexColumn(name="ImageIndex")	
+	@Column(name="Keywords", nullable=true, length=255)	
+	private String[] keywords;
 	
 	@OneToMany(mappedBy="image", targetEntity=com.archive.spring.model.Comment.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
@@ -106,6 +119,30 @@ public class Image implements Serializable {
 		return url;
 	}
 	
+	public void setDescription(String value) {
+		this.description = value;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setKeywords(String[] value) {
+		this.keywords = value;
+	}
+	
+	public String[] getKeywords() {
+		return keywords;
+	}
+	
+	public void setDownloads(int value) {
+		this.downloads = value;
+	}
+	
+	public int getDownloads() {
+		return downloads;
+	}
+	
 	public void setComment(java.util.Set value) {
 		this.comment = value;
 	}
@@ -127,8 +164,8 @@ public class Image implements Serializable {
 	public String toString() {
 		return toString(false);
 	}
-	
-	public String toString(boolean idOnly) {
+        
+        public String toString(boolean idOnly) {
 		if (idOnly) {
 			return String.valueOf(getID());
 		}
@@ -142,11 +179,13 @@ public class Image implements Serializable {
 			sb.append("Shares=").append(getShares()).append(" ");
 			sb.append("Pravacy=").append(getPravacy()).append(" ");
 			sb.append("Url=").append(getUrl()).append(" ");
+			sb.append("Description=").append(getDescription()).append(" ");
+			sb.append("Downloads=").append(getDownloads()).append(" ");
+			sb.append("Keywords=").append(getKeywords()).append(" ");
 			sb.append("Comment.size=").append(getComment().size()).append(" ");
 			sb.append("Category.size=").append(getCategory().size()).append(" ");
 			sb.append("]");
 			return sb.toString();
 		}
 	}
-	
 }
