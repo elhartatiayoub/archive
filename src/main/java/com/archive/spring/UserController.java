@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.archive.spring.model.User;
 import com.archive.spring.service.UserService;
+import javax.validation.Valid;
 
 @Controller
 public class UserController {
@@ -23,7 +24,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/add", method = RequestMethod.POST)
-    public String addPerson(@ModelAttribute("user") User p, Model model) {
+    public String addPerson(@Valid @ModelAttribute("user") User p, Model model) {
         this.userService.addUser(p);
         model.addAttribute("user", p);
         model.addAttribute("listUsers", this.userService.listUser());
