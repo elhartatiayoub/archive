@@ -25,7 +25,7 @@
 
 	<div class="form-content clearfix">
     
-		<form:form action="forgot" modelAttribute="ForgotPass">
+		<form:form action="forgot" modelAttribute="ForgotPass" >
 
 			<h1><i class="iconbig-lock"></i> Sign In</h1>	
 			<div class="login-fields">
@@ -38,7 +38,7 @@
 
 			<div class="login-actions">
                             <form:button type="submit" value="Sign in" class="btn-signin btn btn-primary" >Submit</form:button>
-                                <a href="/signin" class="btn-signin btn">Cancel</a>
+                                <a href="#" class="btn-signin btn">Cancel</a>
 			</div> <!-- .actions -->
                 </form:form>
 

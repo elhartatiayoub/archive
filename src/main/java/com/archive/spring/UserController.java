@@ -52,7 +52,7 @@ public class UserController {
             return "redirect:/user";
         } else {
             model.addAttribute("user", new User());
-            return "inscription";
+            return "signup";
         }
 
     }
