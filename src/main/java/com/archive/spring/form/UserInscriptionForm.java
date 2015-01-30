@@ -3,6 +3,7 @@ package com.archive.spring.form;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Email;
 import com.archive.spring.form.constraint.FieldMatch;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Size;
 
 /**
@@ -25,6 +26,17 @@ public class UserInscriptionForm {
     @Size(min = 6, max = 32)
     @NotNull
     String confPass;
+    
+    @AssertTrue
+    private boolean termsAndPolicy;
+
+    public boolean isTermsAndPolicy() {
+        return termsAndPolicy;
+    }
+
+    public void setTermsAndPolicy(boolean termsAndPolicy) {
+        this.termsAndPolicy = termsAndPolicy;
+    }
 
     public String getEmail() {
         return email;
