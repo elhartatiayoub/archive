@@ -9,11 +9,13 @@ import com.archive.spring.dao.CommentDAO;
 import com.archive.spring.model.Comment;
 import com.archive.spring.model.Image;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Iob
  */
+@Repository("commentDAO")
 public class CommentDAOImpl implements CommentDAO{
 
     @Override

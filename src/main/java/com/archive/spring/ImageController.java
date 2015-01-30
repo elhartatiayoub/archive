@@ -23,10 +23,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ImageController {
 
+    @Autowired
     private ImageService imageService;
 
-    @Autowired
-    @Qualifier(value = "imageService")
+    
     public void setImageService(ImageService imageService) {
         this.imageService = imageService;
     }
