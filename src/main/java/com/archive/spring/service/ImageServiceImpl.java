@@ -9,6 +9,8 @@ package com.archive.spring.service;
 import com.archive.spring.dao.ImageDao;
 import com.archive.spring.model.Image;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,8 +22,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ImageServiceImpl implements ImageService{
     
+    @Autowired
+    @Qualifier(value = "imageDao")
     private ImageDao imageDao;
 
+    
     public void setImageDao(ImageDao imageDao) {
         this.imageDao = imageDao;
     }

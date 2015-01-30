@@ -53,11 +53,10 @@ public class Image implements Serializable {
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set comment = new java.util.HashSet();
 	
-	@ManyToMany(targetEntity=com.archive.spring.model.Category.class)	
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinTable(name="Category_Image", joinColumns={ @JoinColumn(name="ImageID") }, inverseJoinColumns={ @JoinColumn(name="CategoryID") })	
-	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
-	private java.util.Set category = new java.util.HashSet();
+	@ManyToOne(targetEntity=com.archive.spring.model.Category.class, fetch=FetchType.LAZY)	
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
+	@JoinColumns({ @JoinColumn(name="CategoryID", referencedColumnName="ID", nullable=false) })	
+	private com.archive.spring.model.Category category;
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -152,11 +151,11 @@ public class Image implements Serializable {
 	}
 	
 	
-	public void setCategory(java.util.Set value) {
+	public void setCategory(Category value) {
 		this.category = value;
 	}
 	
-	public java.util.Set getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 	
@@ -181,9 +180,12 @@ public class Image implements Serializable {
 			sb.append("Url=").append(getUrl()).append(" ");
 			sb.append("Description=").append(getDescription()).append(" ");
 			sb.append("Downloads=").append(getDownloads()).append(" ");
+			if (getCategory() != null)
+				sb.append("Category.Persist_ID=").append(getCategory().toString(true)).append(" ");
+			else
+				sb.append("Category=null ");
 			sb.append("Keywords=").append(getKeywords()).append(" ");
 			sb.append("Comment.size=").append(getComment().size()).append(" ");
-			sb.append("Category.size=").append(getCategory().size()).append(" ");
 			sb.append("]");
 			return sb.toString();
 		}

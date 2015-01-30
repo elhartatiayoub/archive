@@ -35,7 +35,7 @@
 	</beans:bean>
 
 	<!-- Hibernate 4 SessionFactory Bean definition -->
-	<beans:bean id="hibernate4AnnotatedSessionFactory"
+	<beans:bean id="SessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
 		<beans:property name="annotatedClasses">
@@ -57,32 +57,23 @@
 	</beans:bean>
         
         
+        
+        
 <!--	DAO Beans-->
         
         
-	<beans:bean id="userDAO" class="com.archive.spring.dao.UserDAOImpl">
-		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</beans:bean>
-        <beans:bean id="imageDAO" class="com.archive.spring.dao.ImageDaoImpl">
-		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</beans:bean>
-<!--        <beans:bean id="roleDAO" class="com.archive.spring.dao.RoleDaoImpl">
-		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</beans:bean>
-        <beans:bean id="commentDAO" class="com.archive.spring.dao.CommentDaoImpl">
-		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</beans:bean>-->
+	<beans:bean id="userDAO" class="com.archive.spring.dao.impl.UserDAOImpl"/>
+        <beans:bean id="imageDAO" class="com.archive.spring.dao.impl.ImageDaoImpl"/>
+        <beans:bean id="roleDAO" class="com.archive.spring.dao.impl.RoleDaoImpl"/>
+        <beans:bean id="commentDAO" class="com.archive.spring.dao.impl.CommentDaoImpl"/>
+        <beans:bean id="categoryDAO" class="com.archive.spring.dao.impl.CategoryDaoImpl"/>
         
         
 <!--        services Beans-->
         
         
-	<beans:bean id="userService" class="com.archive.spring.service.UserServiceImpl">
-		<beans:property name="userDAO" ref="userDAO"></beans:property>
-	</beans:bean>
-        <beans:bean id="imageService" class="com.archive.spring.service.ImageServiceImpl">
-		<beans:property name="ImageDao" ref="imageDAO"></beans:property>
-	</beans:bean>
+	<beans:bean id="userService" class="com.archive.spring.service.UserServiceImpl"/>
+        <beans:bean id="imageService" class="com.archive.spring.service.ImageServiceImpl"/>
         
 <!--        Controller to be user package-->
 

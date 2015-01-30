@@ -1,7 +1,6 @@
 package com.archive.spring.model;
 
 
-
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -20,10 +19,10 @@ public class Category implements Serializable {
 	@Column(name="Name", nullable=true, length=255)	
 	private String name;
 	
-	@Column(name="`Desc`", nullable=true, length=10)	
-	private String desc;
+	@Column(name="Description", nullable=true, length=255)	
+	private String description;
 	
-	@ManyToMany(mappedBy="category", targetEntity=com.archive.spring.model.Image.class)	
+	@OneToMany(mappedBy="category", targetEntity=com.archive.spring.model.Image.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set image = new java.util.HashSet();
@@ -48,12 +47,12 @@ public class Category implements Serializable {
 		return name;
 	}
 	
-	public void setDesc(String value) {
-		this.desc = value;
+	public void setDescription(String value) {
+		this.description = value;
 	}
 	
-	public String getDesc() {
-		return desc;
+	public String getDescription() {
+		return description;
 	}
 	
 	public void setImage(java.util.Set value) {
@@ -78,7 +77,7 @@ public class Category implements Serializable {
 			sb.append("Category[ ");
 			sb.append("ID=").append(getID()).append(" ");
 			sb.append("Name=").append(getName()).append(" ");
-			sb.append("Desc=").append(getDesc()).append(" ");
+			sb.append("Description=").append(getDescription()).append(" ");
 			sb.append("Image.size=").append(getImage().size()).append(" ");
 			sb.append("]");
 			return sb.toString();
