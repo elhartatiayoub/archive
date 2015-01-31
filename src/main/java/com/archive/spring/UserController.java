@@ -32,7 +32,7 @@ public class UserController {
     @RequestMapping(value = "/index", method = RequestMethod.POST)
     public String addUser(@Valid @ModelAttribute("UserInscriptionForm") UserInscriptionForm p ,BindingResult result, Model model) {
         User user = new User();
-        if (result.hasErrors()) {
+        if (!result.hasErrors()) {
             System.out.println(result.getFieldError().getField());
             user.setEmail(p.getEmail());
             user.setPassHash(StringHash.hash(p.getPassword()));
