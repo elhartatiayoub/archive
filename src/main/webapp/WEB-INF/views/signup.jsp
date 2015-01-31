@@ -24,7 +24,7 @@
 <div class="account-container">
         <div class="form-content clearfix">
 
-            <form:form  modelAttribute="UserInscriptionForm" method = "POST" action="/SignUp">
+            <form:form  modelAttribute="UserInscriptionForm" method = "POST" action="/SpringMVCHibernate/SignUp">
 
                 <h1><i class="iconbig-note-write"></i> Sign Up</h1>	
 
@@ -33,23 +33,29 @@
 
                     <div class="field">
                         <form:label path="username">Nom d'utilisateur:</form:label>
-                        <form:input path="username"  id="username" placeholder="Username" class="login username-field" required=""  />
+                        <form:input path="username"  id="username" placeholder="Username" class="login username-field" required="true"   />
+                        <form:errors path="username" cssclass="error"></form:errors>
                     </div> <!-- /field -->
 
                     <div class="field">
                         <form:label path="email">Email:</form:label>
-                        <form:input path="email"   id="email" placeholder="Email address" class="login email-field" required=""  />
+                        <form:input path="email"   id="email" placeholder="Email address" class="login email-field" required="true"  />
+                        <form:errors path="email" cssclass="error"></form:errors>
                     </div> <!-- /field -->
 
                     <div class="field">
                         <form:label path="password">Mot de passe:</form:label>
-                        <form:password path="password" id="password" placeholder="Password"  class="login password-field" required="" />
+                        <form:password path="password" id="password" placeholder="Password"  class="login password-field" required="true" />
+                        <form:errors path="password" cssclass="error"></form:errors>
                     </div> <!-- /password -->
 
                     <div class="field">
-                        <form:label path="password">Confirmer Mot de passe:</form:label>
-                        <form:password path="confPass" id="password" placeholder="Confirmer le Mot de Passe"  class="login password-field" required="" />
+                        <form:label path="confPass">Confirmer Mot de passe:</form:label>
+                        <form:password path="confPass" id="password" placeholder="Confirmer le Mot de Passe"  class="login password-field" required="true" />
+                        <form:errors path="confPass" cssclass="error"></form:errors>
                     </div> <!-- /password -->
+                    
+
 
                 </div> <!-- /login-fields -->			
 

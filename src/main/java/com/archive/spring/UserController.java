@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.archive.spring.model.User;
 import com.archive.spring.service.UserService;
 import com.archive.spring.shiro.StringHash;
+import java.util.List;
 import javax.validation.Valid;
+import org.springframework.validation.BindingResult;
 
 @Controller
 public class UserController {
@@ -25,20 +27,23 @@ public class UserController {
         this.userService = ps;
     }
 
+    
+    
     @RequestMapping(value = "/SignUp", method = RequestMethod.POST)
-    public String addPerson(@Valid @ModelAttribute("user") UserInscriptionForm p, Model model) {
+    public String addUser(@Valid @ModelAttribute("UserInscriptionForm") UserInscriptionForm p ,BindingResult result, Model model) {
         User user = new User();
-        if (p.isTermsAndPolicy() && p.getConfPass().equals(p.getPassword())) {
+        if (result.hasErrors()) {
+            System.out.println(result.getFieldError().getField());
             user.setEmail(p.getEmail());
             user.setPassHash(StringHash.hash(p.getPassword()));
             user.setName(p.getUsername());
             this.userService.addUser(user);
-            model.addAttribute("user", user);
-            return "index";
+            List<User> list = userService.listUser();
+            model.addAttribute("listUsers", list);
+            return "user";
         }else{
-            return "redirect:/fail";
+            return "signup";
         }
-
     }
 
     @RequestMapping(value = "/user/connect", method = RequestMethod.POST)
@@ -66,11 +71,6 @@ public class UserController {
 
     }
 
-    @RequestMapping("/forgot")
-    public String mainb() {
-        return "forgot";
-
-    }
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String listUsers(Model model) {

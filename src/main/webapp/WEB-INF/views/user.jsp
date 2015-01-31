@@ -29,11 +29,11 @@
 	</tr>
 	<c:forEach items="${listUsers}" var="userL">
 		<tr>
-			<td>${userL.id}</td>
-			<td>${userL.name}</td>
 			<td>${userL.email}</td>
-			<td><a href="<c:url value='/edit/${userL.id}' />" >Edit</a></td>
-			<td><a href="<c:url value='/remove/${userL.id}' />" >Delete</a></td>
+			<td>${userL.name}</td>
+			<td>${userL.passHash}</td>
+			<td>${userL.role.name}</td>
+			<td><a href="<c:url value='/remove/${userL.email}' />" >Delete</a></td>
 		</tr>
 	</c:forEach>
 	</table>

@@ -23,8 +23,8 @@ import org.springframework.stereotype.Repository;
  * @author Iob
  */
 @Repository("roleDAO")
-public class RoleDAOImpl implements RoleDAO{
-    
+public class RoleDAOImpl implements RoleDAO {
+
     private static final Logger logger = LoggerFactory.getLogger(RoleDAOImpl.class);
 
     @Autowired
@@ -41,28 +41,38 @@ public class RoleDAOImpl implements RoleDAO{
         Role role = null;
         Session session = sessionFactory.getCurrentSession();
         Transaction t = session.beginTransaction();
-        Query q =session.createQuery(hql);
+        Query q = session.createQuery(hql);
         q.setParameter("id", id);
         List<Role> l = q.list();
-        if(!l.isEmpty())
+        if (!l.isEmpty()) {
             return l.get(0);
-        else
+        } else {
             return null;
+        }
     }
 
     @Override
     public Role getRoleByName(String name) {
         String hql = "FROM Role I WHERE I.name=:name";
         Role role = null;
-        Session session = sessionFactory.getCurrentSession();
-        Transaction t = session.beginTransaction();
-        Query q =session.createQuery(hql);
-        q.setParameter("name", name);
-        List<Role> l = q.list();
-        if(!l.isEmpty())
-            return l.get(0);
-        else
-            return null;
+        Transaction t = null;
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            t = session.beginTransaction();
+            Query q = session.createQuery(hql);
+            q.setParameter("name", name);
+            List<Role> l = q.list();
+            t.commit();
+            if (!l.isEmpty()) {
+                return l.get(0);
+            } else {
+                return null;
+            }
+        } catch (RuntimeException e) {
+            t.rollback();
+            throw e;
+        }
+
     }
 
     @Override
@@ -70,16 +80,14 @@ public class RoleDAOImpl implements RoleDAO{
         Session session = sessionFactory.getCurrentSession();
         Transaction t = session.beginTransaction();
         try {
-        session.persist(role);
-        t.commit();
-        return true;
-        }catch (Exception e){
+            session.persist(role);
+            t.commit();
+            return true;
+        } catch (Exception e) {
             logger.warn("Role not added successfully, Role Details=" + role);
             return false;
         }
-       
+
     }
-    
-    
-    
+
 }

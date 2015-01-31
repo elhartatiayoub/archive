@@ -1,11 +1,13 @@
 
 package com.archive.spring.model;
 
+
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="`User`")
+@IdClass(UserPK.class)
 public class User implements Serializable {
 	public User() {
 	}
@@ -18,18 +20,27 @@ public class User implements Serializable {
 		User user = (User)aObj;
 		if ((getEmail() != null && !getEmail().equals(user.getEmail())) || (getEmail() == null && user.getEmail() != null))
 			return false;
+		if (getID() != user.getID())
+			return false;
 		return true;
 	}
 	
 	public int hashCode() {
 		int hashcode = 0;
 		hashcode = hashcode + (getEmail() == null ? 0 : getEmail().hashCode());
+		hashcode = hashcode + (int) getID();
 		return hashcode;
 	}
 	
 	@Column(name="Email", nullable=false)	
 	@Id	
 	private String email;
+	
+	@Column(name="ID", nullable=false)	
+	@Id	
+	@GeneratedValue(generator="MODEL_USER_ID_GENERATOR")	
+	@org.hibernate.annotations.GenericGenerator(name="MODEL_USER_ID_GENERATOR", strategy="native")	
+	private int ID;
 	
 	@ManyToOne(targetEntity=com.archive.spring.model.Role.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
@@ -42,16 +53,33 @@ public class User implements Serializable {
 	@Column(name="PassHash", nullable=true, length=255)	
 	private String passHash;
 	
+	@Column(name="Website", nullable=true, length=255)	
+	private String website;
+	
+	@Column(name="Avatar", nullable=true, length=255)	
+	private String avatar;
+	
+	@Column(name="Description", nullable=true, length=255)	
+	private String description;
+	
 	@OneToMany(targetEntity=com.archive.spring.model.Image.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinColumns({ @JoinColumn(name="UserEmail", nullable=false) })	
-	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
+	@JoinColumns({ @JoinColumn(name="UserEmail", nullable=false), @JoinColumn(name="UserID", nullable=false) })	
+	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.EXTRA)	
 	private java.util.Set images = new java.util.HashSet();
 	
 	@OneToMany(mappedBy="user", targetEntity=com.archive.spring.model.Comment.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
+	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.EXTRA)	
 	private java.util.Set comment = new java.util.HashSet();
+	
+	public void setID(int value) {
+		this.ID = value;
+	}
+	
+	public int getID() {
+		return ID;
+	}
 	
 	public void setName(String value) {
 		this.name = value;
@@ -69,16 +97,36 @@ public class User implements Serializable {
 		return email;
 	}
 	
-	public String getORMID() {
-		return getEmail();
-	}
-	
 	public void setPassHash(String value) {
 		this.passHash = value;
 	}
 	
 	public String getPassHash() {
 		return passHash;
+	}
+	
+	public void setWebsite(String value) {
+		this.website = value;
+	}
+	
+	public String getWebsite() {
+		return website;
+	}
+	
+	public void setAvatar(String value) {
+		this.avatar = value;
+	}
+	
+	public String getAvatar() {
+		return avatar;
+	}
+	
+	public void setDescription(String value) {
+		this.description = value;
+	}
+	
+	public String getDescription() {
+		return description;
 	}
 	
 	public void setRole(com.archive.spring.model.Role value) {
@@ -113,18 +161,22 @@ public class User implements Serializable {
 	
 	public String toString(boolean idOnly) {
 		if (idOnly) {
-			return String.valueOf(getEmail());
+			return String.valueOf(getEmail() + " " + getID());
 		}
 		else {
 			StringBuffer sb = new StringBuffer();
 			sb.append("User[ ");
 			sb.append("Email=").append(getEmail()).append(" ");
+			sb.append("ID=").append(getID()).append(" ");
 			if (getRole() != null)
 				sb.append("Role.Persist_ID=").append(getRole().toString(true)).append(" ");
 			else
 				sb.append("Role=null ");
 			sb.append("Name=").append(getName()).append(" ");
 			sb.append("PassHash=").append(getPassHash()).append(" ");
+			sb.append("Website=").append(getWebsite()).append(" ");
+			sb.append("Avatar=").append(getAvatar()).append(" ");
+			sb.append("Description=").append(getDescription()).append(" ");
 			sb.append("Images.size=").append(getImages().size()).append(" ");
 			sb.append("Comment.size=").append(getComment().size()).append(" ");
 			sb.append("]");
@@ -138,16 +190,4 @@ public class User implements Serializable {
 	public void onSave() {
 		_saved=true;
 	}
-	
-	
-	public void onLoad() {
-		_saved=true;
-	}
-	
-	
-	public boolean isSaved() {
-		return _saved;
-	}
-	
-	
 }

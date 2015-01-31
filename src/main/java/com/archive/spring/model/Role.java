@@ -19,11 +19,6 @@ public class Role implements Serializable {
 	@Column(name="Name", nullable=true, length=255)	
 	private String name;
 	
-	@OneToMany(mappedBy="role", targetEntity=com.archive.spring.model.User.class)	
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
-	private java.util.Set user = new java.util.HashSet();
-	
 	private void setID(int value) {
 		this.ID = value;
 	}
@@ -44,15 +39,6 @@ public class Role implements Serializable {
 		return name;
 	}
 	
-	public void setUser(java.util.Set value) {
-		this.user = value;
-	}
-	
-	public java.util.Set getUser() {
-		return user;
-	}
-	
-	
 	public String toString() {
 		return toString(false);
 	}
@@ -66,7 +52,6 @@ public class Role implements Serializable {
 			sb.append("Role[ ");
 			sb.append("ID=").append(getID()).append(" ");
 			sb.append("Name=").append(getName()).append(" ");
-			sb.append("User.size=").append(getUser().size()).append(" ");
 			sb.append("]");
 			return sb.toString();
 		}

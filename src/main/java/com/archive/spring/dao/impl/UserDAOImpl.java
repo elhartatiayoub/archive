@@ -29,12 +29,16 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void addUser(User u) {
-        Session session = this.sessionFactory.getCurrentSession();
-        Transaction t = session.beginTransaction();
-        System.out.println(u);
-        session.persist(u);
-        t.commit();
-        logger.info("Person saved successfully, Person Details=" + u);
+        Transaction t = null;
+        try {
+            Session session = this.sessionFactory.getCurrentSession();
+            t = session.beginTransaction();
+            session.persist(u);
+            t.commit();
+        } catch (RuntimeException e) {
+            t.rollback();
+            throw e;
+        }
     }
 
     @Override
@@ -74,10 +78,17 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public List<User> getAllUsers() {
-        Session session = this.sessionFactory.getCurrentSession();
-        List<User> personsList = session.createQuery("from User").list();
-
-        return personsList;
+        Transaction t = null;
+        try {
+            Session session = this.sessionFactory.getCurrentSession();
+            t = session.beginTransaction();
+            List<User> personsList = session.createQuery("from User").list();
+            t.commit();
+            return personsList;
+        } catch (RuntimeException e) {
+            t.rollback();
+            throw e;
+        }
     }
 
 }
