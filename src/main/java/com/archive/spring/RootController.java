@@ -32,6 +32,11 @@ public class RootController {
         return "index";
 
     }
+      @RequestMapping("/profile")
+    public String profil() {
+        return "profile";
+
+    }
     @RequestMapping("/SignUp")
     public String SignUpRedirect() {
         return "signup";

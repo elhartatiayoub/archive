@@ -40,7 +40,7 @@ public class UserPrincipal implements Serializable {
     public UserPrincipal(User user) {
         displayName = user.getName();
         email = user.getEmail();
-        id = new Integer(user.getID());
+        id = user.getID();
     }
 
     public Integer getId() {

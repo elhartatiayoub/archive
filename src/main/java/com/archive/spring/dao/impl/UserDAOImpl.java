@@ -2,7 +2,10 @@ package com.archive.spring.dao.impl;
 
 import com.archive.spring.dao.UserDAO;
 import com.archive.spring.model.User;
+import com.archive.spring.shiro.UserPrincipal;
 import java.util.List;
+import javax.inject.Inject;
+import org.apache.shiro.SecurityUtils;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,20 +14,26 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository("userDAO")
+@Service
+@Transactional
 public class UserDAOImpl implements UserDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(UserDAOImpl.class);
 
-    @Autowired
-    @Qualifier(value = "sessionFactory")
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
-    public void setSessionFactory(SessionFactory sf) {
-        this.sessionFactory = sf;
+    @Inject
+    public UserDAOImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    private Session getCurrentSession() {
+        return sessionFactory.getCurrentSession();
     }
 
     @Override
@@ -91,4 +100,16 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
+    @Override
+    public User getCurrentUser() {
+        UserPrincipal principal = (UserPrincipal) SecurityUtils.getSubject().getPrincipal();
+        if (principal == null) {
+            return null;
+        }
+        User user = (User) getCurrentSession().get(User.class, principal.getId());
+        if (user == null) {
+            SecurityUtils.getSubject().logout();
+        }
+        return user;
+    }
 }
