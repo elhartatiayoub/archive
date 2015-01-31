@@ -35,7 +35,7 @@ public class UserController {
         if (result.hasErrors()) {
             System.out.println(result.getFieldError().getField());
             user.setEmail(p.getEmail());
-            user.setPassHash(StringHash.hash(p.getPassword()));
+            user.setPassword(StringHash.hash(p.getPassword()));
             user.setName(p.getUsername());
             this.userService.addUser(user);
             model.addAttribute("user", user);

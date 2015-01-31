@@ -51,7 +51,7 @@ public class User implements Serializable {
 	private String name;
 	
 	@Column(name="PassHash", nullable=true, length=255)	
-	private String passHash;
+	private String password;
 	
 	@Column(name="Website", nullable=true, length=255)	
 	private String website;
@@ -97,12 +97,12 @@ public class User implements Serializable {
 		return email;
 	}
 	
-	public void setPassHash(String value) {
-		this.passHash = value;
+	public void setPassword(String value) {
+		this.password = value;
 	}
 	
-	public String getPassHash() {
-		return passHash;
+	public String getPassword() {
+		return password;
 	}
 	
 	public void setWebsite(String value) {
@@ -173,7 +173,7 @@ public class User implements Serializable {
 			else
 				sb.append("Role=null ");
 			sb.append("Name=").append(getName()).append(" ");
-			sb.append("PassHash=").append(getPassHash()).append(" ");
+			sb.append("PassHash=").append(getPassword()).append(" ");
 			sb.append("Website=").append(getWebsite()).append(" ");
 			sb.append("Avatar=").append(getAvatar()).append(" ");
 			sb.append("Description=").append(getDescription()).append(" ");
