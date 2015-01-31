@@ -11,11 +11,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="index.jsp"><img src="/SpringMVCHibernate/resources/img/logo.png" /></a>
+          <a class="brand" href="/SpringMVCHibernate/index"><img src="/SpringMVCHibernate/resources/img/logo.png" /></a>
           <div class="nav-collapse">
             <ul class="nav">
 			  <li class="divider-vertical"></li>
-              <li><a href="about.jsp">About</a></li>
+              <li><a href="/SpringMVCHibernate/about">About</a></li>
 			  <li class="divider-vertical"></li>
               <form class="navbar-search pull-left" action="" />
                 <input type="text" class="search-query span2" placeholder="Search" required="" />
@@ -25,9 +25,9 @@
             </ul>
             <ul class="nav pull-right">
             <li class="divider-vertical"></li>
-            <li class="active"><a href="signin.jsp"><i class="icon-lock"></i> Sign in</a></li>
+            <li class="active"><a href="/SpringMVCHibernate/signin"><i class="icon-lock"></i> Sign in</a></li>
             <li class="divider-vertical"></li>
-            <li><a href="signup.jsp"><i class="icon-edit"></i> Sign up</a></li>
+            <li><a href="/SpringMVCHibernate/signup"><i class="icon-edit"></i> Sign up</a></li>
             <li class="divider-vertical"></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>

@@ -33,7 +33,7 @@ public class UserModifyForm {
     String newpass;
     @Size(min = 6, max = 32)
     @NotNull
-    String confPass;
+    String confNew;
 
     public String getNom() {
         return nom;
@@ -59,8 +59,8 @@ public class UserModifyForm {
         return newpass;
     }
 
-    public String getConfPass() {
-        return confPass;
+    public String getConfNew() {
+        return confNew;
     }
 
     public void setNom(String nom) {
@@ -87,8 +87,8 @@ public class UserModifyForm {
         this.newpass = newpass;
     }
 
-    public void setConfPass(String confPass) {
-        this.confPass = confPass;
+    public void setConfNew(String confPass) {
+        this.confNew = confPass;
     }
     
     public File getAvatar() {

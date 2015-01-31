@@ -21,10 +21,10 @@
     </head>
     <body>
         <%@include file="headerDisc.jsp"%>
-<div class="account-container">
+     <div class="account-container">
         <div class="form-content clearfix">
 
-            <form:form  modelAttribute="UserInscriptionForm" method = "POST" action="/SpringMVCHibernate/SignUp">
+            <form:form  modelAttribute="UserInscriptionForm" method = "POST" action="/SpringMVCHibernate/index">
 
                 <h1><i class="iconbig-note-write"></i> Sign Up</h1>	
 

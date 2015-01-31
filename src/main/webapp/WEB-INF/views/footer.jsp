@@ -22,11 +22,11 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery-1.7.2.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/image-gallery.js"></script>
-    <script src="js/jquery.mousewheel-3.0.6.pack.js"></script>
-    <script src="source/jquery.fancybox.js"></script>
+    <script src="/SpringMVCHibernate/resources/js/jquery-1.7.2.min.js"></script>
+    <script src="/SpringMVCHibernate/resources/js/bootstrap.js"></script>
+    <script src="/SpringMVCHibernate/resources/js/image-gallery.js"></script>
+    <script src="/SpringMVCHibernate/resources/js/jquery.mousewheel-3.0.6.pack.js"></script>
+    <script src="/SpringMVCHibernate/resources/source/jquery.fancybox.js"></script>
 
 
 

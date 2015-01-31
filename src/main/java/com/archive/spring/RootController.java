@@ -27,12 +27,29 @@ public class RootController {
 
     }
     
-    
+      @RequestMapping("/index")
+    public String index() {
+        return "index";
+
+    }
     @RequestMapping("/SignUp")
     public String SignUpRedirect() {
         return "signup";
 
     }
+     @RequestMapping("/signin")
+    public String signin() {
+        return "signin";
+
+    }
     
-    
+      @RequestMapping("/account_setting")
+    public String editUser() {
+        return "account_setting";
+
+    }
+       @RequestMapping("/404")
+    public String erreur() {
+        return "404";
+    }
 }

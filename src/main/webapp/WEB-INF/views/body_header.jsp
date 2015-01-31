@@ -4,7 +4,7 @@
     Author     : Sara
 --%>
 
-    <div class="navbar navbar-fixed-top">
+        <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -12,26 +12,26 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="index.jsp"><img src="/SpringMVCHibernate/resources/img/logo.png" /></a>
+          <a class="brand" href="/SpringMVCHibernate/index"><img src="/SpringMVCHibernate/resources/img/logo.png" /></a>
           <div class="nav-collapse">
             <ul class="nav">
 			  <li class="divider-vertical"></li>
-              <li class="active"><a href="about.jsp">About</a></li>
+              <li class="active"><a href="/SpringMVCHibernate/about">About</a></li>
 			  <li class="divider-vertical"></li>
-              <form class="navbar-search pull-left" action="ETTTT" />
+              <form class="navbar-search pull-left" action="" />
                 <input type="text" class="search-query span2" placeholder="Search" required="" />
               </form>
 			  <li class="divider-vertical"></li>
             </ul>
             <ul class="nav pull-right">
             <li class="divider-vertical"></li>
-            <li class="gravatar"><a href="profile.jsp"></a></li>
+            <li class="gravatar"><a href="/SpringMVCHibernate/profile"></a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">${user.name}<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="account_setting.jsp"><i class="icon-user"></i>Paramètres du Compte</a></li>
+                <li><a href="/SpringMVCHibernate/account_setting"><i class="icon-user"></i> Account Setting</a></li>
                 <li class="divider"></li>
-                <li><a href="signin.jsp"><i class="icon-off"></i>Déconnexion</a></li>
+                <li><a href="/SpringMVCHibernate/signin"><i class="icon-off"></i> Sign out</a></li>
               </ul>
             </li>
             <li class="divider-vertical"></li>

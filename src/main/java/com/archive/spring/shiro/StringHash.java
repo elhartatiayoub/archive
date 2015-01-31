@@ -2,7 +2,6 @@ package com.archive.spring.shiro;
 
 
 import java.math.BigInteger;
-import java.sql.Timestamp;
 
 public class StringHash {
 

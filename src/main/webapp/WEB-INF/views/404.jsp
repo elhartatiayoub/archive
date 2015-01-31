@@ -13,6 +13,7 @@
         <%@ include file="header.jsp" %>
     </head>
     <body>
+             <%@include file="body_header.jsp"%>
        <div class="account-container">
         <div class="form-content clearfix">
             <div class="error_404">
@@ -26,5 +27,7 @@
         </div> <!-- /form-content -->
 
     </div> <!-- /account-container -->
+            <%@ include file="footer.jsp" %>
+
     </body>
 </html>

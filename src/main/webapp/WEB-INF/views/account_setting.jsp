@@ -5,12 +5,18 @@
 --%>
 
 
+<%@page import="com.archive.spring.form.UserModifyForm"%>
 <%@ include file="import.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
         <title>ENSA Gallery</title>
         <%@ include file="header.jsp" %>
+         <%
+            if (request.getAttribute("UserModifyForm") == null) {
+                request.setAttribute("UserModifyForm", new UserModifyForm());
+            }
+            %>
     </head>
     <body>
      <%@include file="body_header.jsp"%>
@@ -18,7 +24,7 @@
         <div class="row">
             <div class="span3 left-sidebar">
                 <div class="account-settings">
-                    <img src="/SpringMVCHibernate/resources/simg/gravatar.jpg" />
+                    <img src="/SpringMVCHibernate/resources/img/gravatar.jpg" />
                 </div>
                 <div class="account-detail">
                     <p><strong>Sign up :</strong></p>
@@ -26,7 +32,7 @@
                     <p><strong>Location : </strong></p>
                     <p>California</p>
                     <hr />
-                    <p><a href="profile.jsp">View Public Profile</a></p>
+                    <p><a href="/SpringMVCHibernate/profile">View Public Profile</a></p>
                 </div>
             </div>
             <div class="span9 content-setting">
@@ -38,23 +44,23 @@
                       </ul>
                       <div class="tab-content">
                         <div class="tab-pane active" id="profile"><!-- Profile -->
-                          <form:form class="form-horizontal" action="/profil">
+                          <form:form class="form-horizontal" action="/SpringMVCHibernate/profil" modelAttribute="UserModifyForm" >
                             <div class="control-group">
                               <form:label path="nom" class="control-label">Your Name</form:label>
                               <div class="controls">
-                                <form:input path="nom" class="input-xlarge" value="dgfhj" />
+                                <form:input path="nom" class="input-xlarge" value="" />
                               </div>
                             </div>
                             <div class="control-group">
                               <form:label path="username" class="control-label">Username</form:label>
                               <div class="controls">
-                                <form:input path="username" type="text" class="input-xlarge" value="johndoe" />
+                                <form:input path="username" type="text" class="input-xlarge" value="" />
                               </div>
                             </div>
                             <div class="control-group">
                               <form:label path="email" class="control-label">Email</form:label>
                               <div class="controls">
-                                <form:input path="email" type="email" class="input-xlarge" value="johndoe@domain.com" />
+                                <form:input path="email" type="email" class="input-xlarge" value="" />
                               </div>
                             </div>
                 
@@ -65,19 +71,19 @@
                               </div>
                             </div>
                             <div class="control-group">
-                              <form:label path="avtar" class="control-label">Avatar</form:label>
+                              <form:label path="avatar" class="control-label">Avatar</form:label>
                               <div class="controls">
                                 <form:input path="avatar"  class="input-file" id="fileInput" type="file" />
                               </div>
                             </div>
                             <div class="form-actions">
-                                <form:button type="submit" name="submit" value="Save Change" class="btn" />
+                                <form:button type="submit" name="submit" value="Save Change" class="btn" >Modifier</form:button>
                             </div>
                           </form:form>
                         </div>
                         
                         <div class="tab-pane" id="password"><!-- Password -->
-                          <form:form class="form-horizontal" action="/profil">
+                          <form:form class="form-horizontal" action="/SpringMVCHibernate/profil" modelAttribute="UserModifyForm">
                             <div class="control-group">
                               <form:label path="oldpass" class="control-label">Enter Old Password</form:label>
                               <div class="controls">
@@ -97,7 +103,7 @@
                               </div>
                             </div>
                             <div class="form-actions">
-                                <form:button path="submit" type="submit"  value="Save Change" class="btn" />
+                                <form:button path="submit" type="submit"  value="Save Change" class="btn" >Modifier</form:button>
                             </div>
                           </form:form>
                         </div>
@@ -108,15 +114,5 @@
         </div>
     </div>
         <%@ include file="footer.jsp" %>
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery-1.7.2.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/image-gallery.js"></script>
-    <script src="js/jquery.mousewheel-3.0.6.pack.js"></script>
-    <script src="source/jquery.fancybox.js"></script>
-
     </body>
 </html>
