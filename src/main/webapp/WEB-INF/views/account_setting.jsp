@@ -13,7 +13,7 @@
         <%@ include file="header.jsp" %>
     </head>
     <body>
-         <%@include file="body_header.jsp"%>
+     <%@include file="body_header.jsp"%>
       <div class="container">
         <div class="row">
             <div class="span3 left-sidebar">
@@ -38,7 +38,7 @@
                       </ul>
                       <div class="tab-content">
                         <div class="tab-pane active" id="profile"><!-- Profile -->
-                          <form:form class="form-horizontal" >
+                          <form:form class="form-horizontal" action="/profil">
                             <div class="control-group">
                               <form:label path="nom" class="control-label">Your Name</form:label>
                               <div class="controls">
@@ -49,7 +49,6 @@
                               <form:label path="username" class="control-label">Username</form:label>
                               <div class="controls">
                                 <form:input path="username" type="text" class="input-xlarge" value="johndoe" />
-                                <p class="help-block">Your Public Profile : http://yourdomain.com/profile/johndoe</p>
                               </div>
                             </div>
                             <div class="control-group">
@@ -78,7 +77,7 @@
                         </div>
                         
                         <div class="tab-pane" id="password"><!-- Password -->
-                          <form:form class="form-horizontal" >
+                          <form:form class="form-horizontal" action="/profil">
                             <div class="control-group">
                               <form:label path="oldpass" class="control-label">Enter Old Password</form:label>
                               <div class="controls">
