@@ -20,6 +20,10 @@ public class RootController {
     public String userslist(){
         return "user";
     }
+     @RequestMapping("/addImage")
+    public String addImage(){
+        return "addImage";
+    }
     
     @RequestMapping("/forgot")
     public String forgot() {

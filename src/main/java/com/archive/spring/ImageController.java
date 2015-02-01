@@ -31,16 +31,6 @@ public class ImageController {
         this.imageService = imageService;
     }
 
-    @RequestMapping(value = "/image/add", method = RequestMethod.POST)
-    public String addImage(@ModelAttribute("image")Image img,Model model) {
-        this.imageService.addImage(img);
-        model.addAttribute("images", this.imageService.getAllImages());
-        return "image";
-
-    }
-    
-     
-    
     @RequestMapping(value = "/image", method = RequestMethod.GET)
     public String listImages(Model model) {
         model.addAttribute("image", new Image());
@@ -48,8 +38,8 @@ public class ImageController {
         return "image";
     }
     
-    @RequestMapping(value = "/addImage", method = RequestMethod.GET)
-    public String addImages(Model model) {
+    @RequestMapping(value = "/SpringMVCHibernate/addImage", method = RequestMethod.GET)
+    public String addImage(Model model) {
         model.addAttribute("addImage",new Image());
         return "addImage";
     }
