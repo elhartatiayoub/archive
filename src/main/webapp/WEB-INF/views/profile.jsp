@@ -32,7 +32,7 @@
                             <c:if test="${!empty user.images}">
                                 <c:forEach items="${user.images}" var="userI">
                                 <div class="span2">
-                                    <a href="#" class="thumbnail"><img src="${userI.url}" alt="" /></a>
+                                    <a href="#" class="thumbnail"><img src="${userI.uqrl}" alt="" /></a>
                                 </div>
                                 </c:forEach>
                             </c:if> 
