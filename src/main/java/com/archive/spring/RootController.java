@@ -5,10 +5,14 @@
  */
 package com.archive.spring;
 
+import com.archive.spring.model.User;
+import com.archive.spring.service.UserService;
 import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.authz.annotation.RequiresGuest;
 import org.hibernate.exception.JDBCConnectionException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,6 +22,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class RootController {
+    @Autowired
+    UserService userService;
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
     
     //to be removed
     @RequestMapping("users")
@@ -40,8 +50,15 @@ public class RootController {
         return "index";
 
     }
+    @RequestMapping("/about")
+    public String about() {
+        return "about";
+
+    }
       @RequestMapping("/profile")
-    public String profil() {
+    public String profil(Model model) {
+        User user=userService.getUserById(1);
+        model.addAttribute("user", user);
         return "profile";
 
     }
