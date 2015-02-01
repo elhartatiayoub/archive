@@ -16,24 +16,13 @@
         <%@include file="body_header.jsp"%>
     <div class="container">
         <div class="row">
-            <div class="span3 left-sidebar">
-                <div class="account-settings">
-                    <img src="/SpringMVCHibernate/resources/img/gravatar.jpg" />
-                </div>
-                <div class="account-detail">
-                    <p><h3 class="t-center">${user.name}</h3></p>
-                    <p><strong>Sign up :</strong></p>
-                    <p>3 weeks a go</p>
-                    <p><strong>Location : </strong></p>
-                    <p>California</p>
-                </div>
-            </div>
+           <%@include file="profil_head.jsp" %>
             <div class="span9 content-setting">
                 <div class="row">
                     <div class="span9">
                         <div class="public-profile">
                            <h3>About ${user.name}</h3>
-                          ${user.desciption}
+                          ${user.description}
                         </div>
                     </div>
                     <div class="span9 portfolio-images">
@@ -43,7 +32,7 @@
                             <c:if test="${!empty user.images}">
                                 <c:forEach items="${user.images}" var="userI">
                                 <div class="span2">
-                                    <a href="#" class="thumbnail"><img src="${userI.Url}" alt="" /></a>
+                                    <a href="#" class="thumbnail"><img src="${userI.uqrl}" alt="" /></a>
                                 </div>
                                 </c:forEach>
                             </c:if> 

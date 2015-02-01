@@ -26,19 +26,7 @@
      <%@include file="body_header.jsp"%>
       <div class="container">
         <div class="row">
-            <div class="span3 left-sidebar">
-                <div class="account-settings">
-                    <img src="/SpringMVCHibernate/resources/img/gravatar.jpg" />
-                </div>
-                <div class="account-detail">
-                    <p><strong>Sign up :</strong></p>
-                    <p>3 weeks a go</p>
-                    <p><strong>Location : </strong></p>
-                    <p>California</p>
-                    <hr />
-                    <p><a href="/SpringMVCHibernate/profile">View Public Profile</a></p>
-                </div>
-            </div>
+          <%@include file="profil_head.jsp" %>
             <div class="span9 content-setting">
                 <div class="content-settings">
                     <div class="tabbable"> <!-- Only required for left/right tabs -->

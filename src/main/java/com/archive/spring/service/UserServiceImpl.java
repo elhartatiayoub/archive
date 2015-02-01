@@ -55,12 +55,18 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public User getUserById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   try {
+            return this.userDAO.getUser("user1@ensa.ma", null);
+        } catch (UniqueCorruptionException ex) {
+            Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
     @Transactional
     public User getUser(String email, String pass) {
+
         try {
             return this.userDAO.getUser(email, pass);
         } catch (UniqueCorruptionException ex) {
