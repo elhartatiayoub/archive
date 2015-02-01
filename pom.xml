@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.journaldev.spring</groupId>
+    <groupId>com.ensa.spring</groupId>
     <artifactId>SpringMVCHibernate</artifactId>
     <name>SpringMVCHibernate</name>
     <packaging>war</packaging>
@@ -38,6 +38,8 @@
             <artifactId>spring-tx</artifactId>
             <version>${org.springframework-version}</version>
         </dependency>
+
+
 		
         <!-- Hibernate -->
         <dependency>
@@ -200,21 +202,23 @@
             <version>1.2.3</version>
             <type>jar</type>
         </dependency>
+      
+        
         <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>javax.faces</artifactId>
-            <version>2.2.7</version>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>1.2.3</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
             <version>5.0</version>
-            <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
-            <version>1.2.3</version>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+            <version>2.1.6</version>
             <type>jar</type>
         </dependency>
     </dependencies>

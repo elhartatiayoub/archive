@@ -57,13 +57,11 @@
         </beans:property>
     </beans:bean>
     
-    <beans>
+
         <!-- first, define your individual @Configuration classes as beans -->
-        <bean class="com.archive.spring.shiro.SecurityConfig"/>
+        <beans:bean class="com.archive.spring.shiro.SecurityConfig"/>
 
         <!-- be sure to include the JavaConfig bean post-processor -->
-        <bean class="org.springframework.config.java.process.ConfigurationPostProcessor"/>
-    </beans>
         
         
         

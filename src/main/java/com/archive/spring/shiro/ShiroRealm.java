@@ -23,7 +23,7 @@ public class ShiroRealm extends AuthorizingRealm {
         try {
             UsernamePasswordToken upat = (UsernamePasswordToken) token;
             User user = userManager.getUser(upat.getUsername(), null);
-            if (user != null && user.getPassword().equals(new String(upat.getPassword()))) {
+            if (user != null && user.getPassHash().equals(new String(upat.getPassword()))) {
                 return new SimpleAuthenticationInfo(new UserPrincipal(user), token.getCredentials(), getName());
             } else {
                 throw new AuthenticationException("Invalid username/password combination!");

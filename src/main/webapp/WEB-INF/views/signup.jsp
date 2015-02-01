@@ -24,7 +24,7 @@
      <div class="account-container">
         <div class="form-content clearfix">
 
-            <form:form  modelAttribute="UserInscriptionForm" method = "POST" action="/SpringMVCHibernate/index">
+            <form:form  modelAttribute="UserInscriptionForm" method = "POST" action="/SpringMVCHibernate/signup">
 
                 <h1><i class="iconbig-note-write"></i> Sign Up</h1>	
 

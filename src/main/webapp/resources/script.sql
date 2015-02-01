@@ -1,17 +1,15 @@
 CREATE TABLE `User` (
-  Email       varchar(255) NOT NULL, 
-  ID          int(11) NOT NULL, 
+  ID          int(11) NOT NULL AUTO_INCREMENT, 
   RoleID      int(11) NOT NULL, 
   Name        varchar(255), 
   PassHash    varchar(255), 
   Website     varchar(255), 
   Avatar      varchar(255), 
   Description varchar(255), 
-  PRIMARY KEY (Email, 
-  ID));
+  Email       varchar(255), 
+  PRIMARY KEY (ID));
 CREATE TABLE Image (
   ID          int(10) NOT NULL AUTO_INCREMENT, 
-  UserEmail   varchar(255) NOT NULL, 
   Title       varchar(255), 
   `Date`      date, 
   Likes       int(10) NOT NULL, 
@@ -28,12 +26,11 @@ CREATE TABLE Role (
   Name varchar(255), 
   PRIMARY KEY (ID));
 CREATE TABLE Comment (
-  ID        int(11) NOT NULL AUTO_INCREMENT, 
-  ImageID   int(10) NOT NULL, 
-  UserEmail varchar(255) NOT NULL, 
-  `Date`    date, 
-  Text      varchar(255), 
-  UserID    int(11) NOT NULL, 
+  ID      int(11) NOT NULL AUTO_INCREMENT, 
+  ImageID int(10) NOT NULL, 
+  `Date`  date, 
+  Text    varchar(255), 
+  UserID  int(11) NOT NULL, 
   PRIMARY KEY (ID));
 CREATE TABLE Category (
   ID          int(11) NOT NULL AUTO_INCREMENT, 
@@ -51,9 +48,9 @@ CREATE TABLE Image_keywords (
   Keywords   varchar(255) NOT NULL, 
   PRIMARY KEY (ImageID, 
   ImageIndex));
-ALTER TABLE Image ADD INDEX Image (UserEmail, UserID), ADD CONSTRAINT Image FOREIGN KEY (UserEmail, UserID) REFERENCES `User` (Email, ID);
+ALTER TABLE Image ADD INDEX Image (UserID), ADD CONSTRAINT Image FOREIGN KEY (UserID) REFERENCES `User` (ID);
 ALTER TABLE `User` ADD INDEX role (RoleID), ADD CONSTRAINT role FOREIGN KEY (RoleID) REFERENCES Role (ID);
-ALTER TABLE Comment ADD INDEX FKComment97755 (UserEmail, UserID), ADD CONSTRAINT FKComment97755 FOREIGN KEY (UserEmail, UserID) REFERENCES `User` (Email, ID);
+ALTER TABLE Comment ADD INDEX FKComment537260 (UserID), ADD CONSTRAINT FKComment537260 FOREIGN KEY (UserID) REFERENCES `User` (ID);
 ALTER TABLE Comment ADD INDEX FKComment435738 (ImageID), ADD CONSTRAINT FKComment435738 FOREIGN KEY (ImageID) REFERENCES Image (ID);
 ALTER TABLE Category_Image ADD INDEX FKCategory_I387140 (CategoryID), ADD CONSTRAINT FKCategory_I387140 FOREIGN KEY (CategoryID) REFERENCES Category (ID);
 ALTER TABLE Image ADD INDEX FKImage53830 (CategoryID), ADD CONSTRAINT FKImage53830 FOREIGN KEY (CategoryID) REFERENCES Category (ID);

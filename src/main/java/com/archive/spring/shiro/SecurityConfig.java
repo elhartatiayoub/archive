@@ -63,8 +63,8 @@ public class SecurityConfig {
         Map<String, String> definitionsMap = new HashMap<String,String>();
         definitionsMap.put("/auth/**", "authc");
         shiroFilter.setFilterChainDefinitionMap(definitionsMap);
-        shiroFilter.setLoginUrl("/login");
-        shiroFilter.setUnauthorizedUrl("/home");
+        shiroFilter.setLoginUrl("/signin");
+        shiroFilter.setUnauthorizedUrl("/index");
         shiroFilter.setSecurityManager(securityManager);
         return shiroFilter;
     }
