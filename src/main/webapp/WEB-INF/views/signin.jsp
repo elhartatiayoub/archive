@@ -29,7 +29,7 @@
 				<p>Connectez vous avec votre compte déja créé</p>
                 
 				<div class="field">
-					<form:label path="username">Username:</form:label>
+					<form:label path="username">email</form:label>
 					<form:input path="username" type="text" id="username"  value="" placeholder="Username" class="login username-field" required="" />
 				</div> <!-- /field -->
 

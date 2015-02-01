@@ -1,40 +1,14 @@
 
 package com.archive.spring.model;
 
-
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="`User`")
-@IdClass(UserPK.class)
 public class User implements Serializable {
 	public User() {
 	}
-	
-	public boolean equals(Object aObj) {
-		if (aObj == this)
-			return true;
-		if (!(aObj instanceof User))
-			return false;
-		User user = (User)aObj;
-		if ((getEmail() != null && !getEmail().equals(user.getEmail())) || (getEmail() == null && user.getEmail() != null))
-			return false;
-		if (getID() != user.getID())
-			return false;
-		return true;
-	}
-	
-	public int hashCode() {
-		int hashcode = 0;
-		hashcode = hashcode + (getEmail() == null ? 0 : getEmail().hashCode());
-		hashcode = hashcode + (int) getID();
-		return hashcode;
-	}
-	
-	@Column(name="Email", nullable=false)	
-	@Id	
-	private String email;
 	
 	@Column(name="ID", nullable=false)	
 	@Id	
@@ -51,7 +25,7 @@ public class User implements Serializable {
 	private String name;
 	
 	@Column(name="PassHash", nullable=true, length=255)	
-	private String password;
+	private String passHash;
 	
 	@Column(name="Website", nullable=true, length=255)	
 	private String website;
@@ -62,23 +36,30 @@ public class User implements Serializable {
 	@Column(name="Description", nullable=true, length=255)	
 	private String description;
 	
+	@Column(name="Email", nullable=true, length=255)	
+	private String email;
+	
 	@OneToMany(targetEntity=com.archive.spring.model.Image.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinColumns({ @JoinColumn(name="UserEmail", nullable=false), @JoinColumn(name="UserID", nullable=false) })	
+	@JoinColumns({ @JoinColumn(name="UserID", nullable=false) })	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.EXTRA)	
-	private java.util.Set images = new java.util.HashSet();
+	private java.util.Set<com.archive.spring.model.Image> images = new java.util.HashSet<com.archive.spring.model.Image>();
 	
 	@OneToMany(mappedBy="user", targetEntity=com.archive.spring.model.Comment.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.EXTRA)	
 	private java.util.Set comment = new java.util.HashSet();
 	
-	public void setID(int value) {
+	private void setID(int value) {
 		this.ID = value;
 	}
 	
 	public int getID() {
 		return ID;
+	}
+	
+	public int getORMID() {
+		return getID();
 	}
 	
 	public void setName(String value) {
@@ -89,20 +70,12 @@ public class User implements Serializable {
 		return name;
 	}
 	
-	public void setEmail(String value) {
-		this.email = value;
+	public void setPassHash(String value) {
+		this.passHash = value;
 	}
 	
-	public String getEmail() {
-		return email;
-	}
-	
-	public void setPassword(String value) {
-		this.password = value;
-	}
-	
-	public String getPassword() {
-		return password;
+	public String getPassHash() {
+		return passHash;
 	}
 	
 	public void setWebsite(String value) {
@@ -129,6 +102,14 @@ public class User implements Serializable {
 		return description;
 	}
 	
+	public void setEmail(String value) {
+		this.email = value;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
 	public void setRole(com.archive.spring.model.Role value) {
 		this.role = value;
 	}
@@ -139,6 +120,10 @@ public class User implements Serializable {
 	
 	public void setImages(java.util.Set value) {
 		this.images = value;
+	}
+        
+        public void addImage(Image value) {
+		this.images.add(value);
 	}
 	
 	public java.util.Set getImages() {
@@ -161,22 +146,22 @@ public class User implements Serializable {
 	
 	public String toString(boolean idOnly) {
 		if (idOnly) {
-			return String.valueOf(getEmail() + " " + getID());
+			return String.valueOf(getID());
 		}
 		else {
 			StringBuffer sb = new StringBuffer();
 			sb.append("User[ ");
-			sb.append("Email=").append(getEmail()).append(" ");
 			sb.append("ID=").append(getID()).append(" ");
 			if (getRole() != null)
 				sb.append("Role.Persist_ID=").append(getRole().toString(true)).append(" ");
 			else
 				sb.append("Role=null ");
 			sb.append("Name=").append(getName()).append(" ");
-			sb.append("PassHash=").append(getPassword()).append(" ");
+			sb.append("PassHash=").append(getPassHash()).append(" ");
 			sb.append("Website=").append(getWebsite()).append(" ");
 			sb.append("Avatar=").append(getAvatar()).append(" ");
 			sb.append("Description=").append(getDescription()).append(" ");
+			sb.append("Email=").append(getEmail()).append(" ");
 			sb.append("Images.size=").append(getImages().size()).append(" ");
 			sb.append("Comment.size=").append(getComment().size()).append(" ");
 			sb.append("]");
@@ -184,10 +169,5 @@ public class User implements Serializable {
 		}
 	}
 	
-	@Transient	
-	private boolean _saved = false;
-	
-	public void onSave() {
-		_saved=true;
-	}
 }
+

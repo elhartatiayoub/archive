@@ -8,8 +8,12 @@
 <%@page import="com.archive.spring.form.UserModifyForm"%>
 <%@ include file="import.jsp" %>
 <!DOCTYPE html>
-<html>
-    <head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
         <title>ENSA Gallery</title>
         <%@ include file="header.jsp" %>
          <%
@@ -17,8 +21,8 @@
                 request.setAttribute("UserModifyForm", new UserModifyForm());
             }
             %>
-    </head>
-    <body>
+    </h:head>
+    <h:body>
      <%@include file="body_header.jsp"%>
       <div class="container">
         <div class="row">
@@ -44,43 +48,38 @@
                       </ul>
                       <div class="tab-content">
                         <div class="tab-pane active" id="profile"><!-- Profile -->
-                          <form:form class="form-horizontal" action="/SpringMVCHibernate/profil" modelAttribute="UserModifyForm" >
+                            <h:form enctype="multipart/form-data" class="form-horizontal">
                             <div class="control-group">
-                              <form:label path="nom" class="control-label">Your Name</form:label>
+                              <label for="username" class="control-label">Username</label>
                               <div class="controls">
-                                <form:input path="nom" class="input-xlarge" value="" />
+                                  <p:inputText  value="#{changeAccountForm.username}" label="username" class="input-xlarge"/>
                               </div>
                             </div>
                             <div class="control-group">
-                              <form:label path="username" class="control-label">Username</form:label>
+                              <label for="email" class="control-label">Email</label>
                               <div class="controls">
-                                <form:input path="username" type="text" class="input-xlarge" value="" />
-                              </div>
-                            </div>
-                            <div class="control-group">
-                              <form:label path="email" class="control-label">Email</form:label>
-                              <div class="controls">
-                                <form:input path="email" type="email" class="input-xlarge" value="" />
+                                <p:inputText  value="#{changeAccountForm.email}" label="email"  class="input-xlarge"/>
                               </div>
                             </div>
                 
                             <div class="control-group">
-                              <form:label path="description" class="control-label">About</form:label>
+                              <label for="description" class="control-label">About</label>
                               <div class="controls">
-                                <form:textarea path="description" class="input-xlarge" id="textarea" rows="3"></form:textarea>
+                                <p:inputTextarea  value="#{changeAccountForm.description}" label="description" rows="3" class="input-xlarge"/>
                               </div>
                             </div>
                             <div class="control-group">
-                              <form:label path="avatar" class="control-label">Avatar</form:label>
+                              <label path="avatar" class="control-label">Avatar</label>
                               <div class="controls">
-                                <form:input path="avatar"  class="input-file" id="fileInput" type="file" />
+                                  <p:fileUpload value="#{changeAccountForm.file}" class="input-file" mode="simple" sizeLimit="2097152" id="fileInput" label="choose" allowTypes="*.jpg;*.png;*.gif;"/>
                               </div>
                             </div>
                             <div class="form-actions">
-                                <form:button type="submit" name="submit" value="Save Change" class="btn" >Modifier</form:button>
+                                <p:commandButton value="Save Change" class="btn" ajax="false" actionListener="#{changeAccountForm.upload}"  />
                             </div>
-                          </form:form>
+                          </h:form>
                         </div>
+                          
                         
                         <div class="tab-pane" id="password"><!-- Password -->
                           <form:form class="form-horizontal" action="/SpringMVCHibernate/profil" modelAttribute="UserModifyForm">
@@ -114,5 +113,5 @@
         </div>
     </div>
         <%@ include file="footer.jsp" %>
-    </body>
+    </h:body>
 </html>

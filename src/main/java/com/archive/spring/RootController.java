@@ -5,7 +5,11 @@
  */
 package com.archive.spring;
 
+import org.apache.shiro.authz.UnauthenticatedException;
+import org.apache.shiro.authz.annotation.RequiresGuest;
+import org.hibernate.exception.JDBCConnectionException;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -31,7 +35,7 @@ public class RootController {
 
     }
     
-      @RequestMapping("/index")
+    @RequestMapping("/index")
     public String index() {
         return "index";
 
@@ -41,7 +45,8 @@ public class RootController {
         return "profile";
 
     }
-    @RequestMapping("/SignUp")
+    @RequiresGuest
+    @RequestMapping("/signup")
     public String SignUpRedirect() {
         return "signup";
 
@@ -52,6 +57,8 @@ public class RootController {
 
     }
     
+
+    
       @RequestMapping("/account_setting")
     public String editUser() {
         return "account_setting";
@@ -59,6 +66,26 @@ public class RootController {
     }
        @RequestMapping("/404")
     public String erreur() {
+        return "404";
+    }
+    
+    @ExceptionHandler(UnauthenticatedException.class)
+    public String shiroUnauthenticatedException() {
+        return "index";
+    }
+
+
+
+
+    @ExceptionHandler(JDBCConnectionException.class)
+    public String handleJDBCError(JDBCConnectionException exception) {
+        exception.printStackTrace();
+        return "404";
+    }
+
+    @ExceptionHandler(Exception.class)
+    public String handleGlobalError(Exception exception) {
+        exception.printStackTrace();
         return "404";
     }
 }

@@ -22,7 +22,7 @@ public class Comment implements Serializable {
 	
 	@ManyToOne(targetEntity=com.archive.spring.model.User.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinColumns({ @JoinColumn(name="UserEmail", referencedColumnName="Email", nullable=false), @JoinColumn(name="UserID", referencedColumnName="ID", nullable=false) })	
+	@JoinColumns({ @JoinColumn(name="UserID", referencedColumnName="ID", nullable=false) })	
 	private com.archive.spring.model.User user;
 	
 	@Column(name="`Date`", nullable=true)	
