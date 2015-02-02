@@ -3,6 +3,7 @@
     Created on : 30-Jan-2015, 20:21:41
     Author     : Sara
 --%>
+
 <%@ include file="import.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -26,6 +27,8 @@
                     <li><a href="/SpringMVCHibernate/index/download"><i class="icon-th-list"></i> Most Downloaded</a></li>
                 </ul>
             </div>
+            <c:if test="${!empty user.images}">
+                    <c:forEach items="${user.images}" var="userImage">
             <div class="span3 galery">
                 <div class="menu-galery">
                     <ul>
@@ -35,51 +38,35 @@
                         <li><a href="" rel="tooltip" title="Like"><i class="iconbig-black-star"></i></a></li>
                     </ul>
                 </div>
-                <div class="image-galery">
-                    <c:if test="${!empty user.images}">
-                        <c:forEach items="${user.images}" var="userI">
-                             <a href="/SpringMVCHibernate/detail/${userI.id}" class="thumbnail">
-                                 <img src="${userI.uqrl}" alt="" /></a>
-                        </c:forEach>
-                    </c:if> 
-                </div>
+                        <div class="image-galery">
+                             <a href="/SpringMVCHibernate/detail/${userImage.id}" class="thumbnail">
+                                 <img src="${userImage.url}" alt="" /></a>
+                        </div>
                 <div class="count-galery">
                     <ul>
-                        <li><i class="icon-comment"></i>${image.comment}</li>
-                        <li><i class="icon-download-alt"></i>${image.downloads}</li>
-                        <li><i class="icon-star"></i>${image.likes}</li>
-                        <li><i class="icon-eye-open"></i>${image.shares}</li>
+                        <li><i class="icon-comment"></i>${userImage.comment}</li>
+                        <li><i class="icon-download-alt"></i>${userImage.downloads}</li>
+                        <li><i class="icon-star"></i>${userImage.likes}</li>
+                        <li><i class="icon-eye-open"></i>${userImage.shares}</li>
                     </ul>
                 </div>
                 <div class="tags-galery">
                     <p><i class="icon-tags">
-                         <c:if test="${!empty user.images}">
-                                <c:forEach items="${user.images}" var="userI">
-                                </i> Tags : <a href="#">${image.keywords}</a>,
+                         <c:if test="${!empty userImage.keywords}">
+                                <c:forEach items="${userImage.keywords}" var="keyword">
+                                </i> Tags : <a href="#">${keyword}</a>,
                                 </c:forEach>
                            </c:if> 
                     </p>
                 </div>
             </div>
+                     </c:forEach>
+                </c:if> 
             </div>
         </div>
     </div>
     
-    <div class="container">
-        <div class="pagination">
-        <ul>
-          <li class="disabled"><a href="#" title="Go to the first page">&laquo; First</a></li>
-          <li><a href="#" title="Go to the previous page">&larr;</a></li>
-          <li class="active"><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">..</a></li>
-          <li><a href="#">8</a></li>
-          <li><a href="#">9</a></li>
-          <li><a href="#" title="Go to the next page">&rarr;</a></li>
-          <li><a href="#" title="Go to the last page">Last &raquo;</a></li>
-        </ul>
-      </div>
-    </div>
+    
 <%@ include file="footer.jsp" %>
 
     </body>
