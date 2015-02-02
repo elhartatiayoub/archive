@@ -8,6 +8,7 @@ package com.archive.spring.dao.impl;
 import com.archive.spring.dao.ImageDao;
 import com.archive.spring.model.Image;
 import com.archive.spring.model.User;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -53,14 +54,25 @@ public class ImageDAOImpl implements ImageDao {
     @Override
     public Image getImageById(int id) {
         String hql = "FROM Image I WHERE I.id=:id";
-        Query query = sessionFactory.openSession().createQuery(hql);
-        query.setParameter("ID ", id);
-        List results = query.list();
-        if (results.isEmpty()) {
-            return null;
-        } else {
-            return (Image) results.get(0);
+        Session session=sessionFactory.getCurrentSession();
+        Transaction transaction=null;
+        try {
+            Query query = session.createQuery(hql);
+            transaction=session.beginTransaction();
+            query.setParameter("ID ", id);
+            List results = query.list();
+            transaction.commit();
+            if (results.isEmpty()) {
+                return null;
+            } else {
+                return (Image) results.get(0);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            transaction.rollback();
+             return null;
         }
+       
     }
 
     @Override
@@ -74,6 +86,25 @@ public class ImageDAOImpl implements ImageDao {
 
     @Override
     public void removeImage(int id) {
+    }
+      
+    public List<Image> getLikedImages() {
+        List<Image> liste = new ArrayList<Image>();
+        Session session = this.sessionFactory.getCurrentSession();
+            Query query = session.createQuery("FROM Image img ORDER BY img.likes asc");
+            query.setMaxResults(100);
+            liste = query.list();
+       
+        return liste;
+    }
+      public List<Image> getDownloadedImages() {
+        List<Image> liste = new ArrayList<Image>();
+        Session session = this.sessionFactory.getCurrentSession();
+            Query query = session.createQuery("FROM Image img ORDER BY img.downloads asc");
+            query.setMaxResults(100);
+            liste = query.list();
+       
+        return liste;
     }
 
 }

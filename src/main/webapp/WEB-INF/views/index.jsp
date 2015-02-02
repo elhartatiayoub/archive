@@ -16,40 +16,49 @@
         <div class="row">
             <div class="span3">
                 <div class="nav-headers">
-                    <h3>Parce qu'une image est un souvenir precieux,partageons avec tous</h3>
-                    <p><a href="about.jsp" class="btn">Learn more &rarr;</a></p>
+                    <h3>Parce qu'une image est un souvenir precieux,partageons la avec tous</h3>
+                    <p><a href="/SpringMVCHibernate/addImage" class="btn">Ajouter une image &rarr;</a></p>
                 </div>
                 <ul class="nav nav-tabs nav-stacked">
                     <li class="active"><a href="#"><i class="icon-picture"></i> Newest</a></li>
-                    <li><a href="#"><i class="icon-ok"></i> Popular</a></li>
-                    <li><a href="#"><i class="icon-certificate"></i> Top Sites</a></li>
-                    <li><a href="#"><i class="icon-bookmark"></i> Most Viewed</a></li>
-                    <li><a href="#"><i class="icon-th-list"></i> Categories</a></li>
-                    <li><a href="#"><i class="icon-download"></i> Most Download</a></li>
-                    <li><a href="#"><i class="icon-heart"></i> Recomended</a></li>
+                    <li><a href="/SpringMVCHibernate/index/popular"><i class="icon-ok"></i> Popular</a></li>
+                    <li><a href="/SpringMVCHibernate/index/liked"><i class="icon-bookmark"></i> Most likes</a></li>
+                    <li><a href="/SpringMVCHibernate/index/download"><i class="icon-th-list"></i> Most Downloaded</a></li>
                 </ul>
             </div>
             <div class="span3 galery">
                 <div class="menu-galery">
                     <ul>
-                        <li><a href="detail.jsp" rel="tooltip" title="Detail"><i class="iconbig-search"></i></a></li>
-                        <li><a href="" rel="tooltip" title="Add Comment"><i class="iconbig-speak"></i></a></li>
+                        <li><a href="/SpringMVCHibernate/detail" rel="tooltip" title="Detail"><i class="iconbig-search"></i></a></li>
+                        <li><a href="/SpringMVCHibernate/detail" rel="tooltip" title="Add Comment"><i class="iconbig-speak"></i></a></li>
                         <li><a href="" rel="tooltip" title="Download"><i class="iconbig-download"></i></a></li>
                         <li><a href="" rel="tooltip" title="Like"><i class="iconbig-black-star"></i></a></li>
                     </ul>
                 </div>
-                <div class="image-galery"><a class="group" rel="group1" href="/SpringMVCHibernate/resources/img/4_b.jpg"><img src="/SpringMVCHibernate/resources/img/4_b.jpg" /></a></div>
+                <div class="image-galery">
+                    <c:if test="${!empty user.images}">
+                        <c:forEach items="${user.images}" var="userI">
+                             <a href="/SpringMVCHibernate/detail/${userI.id}" class="thumbnail">
+                                 <img src="${userI.uqrl}" alt="" /></a>
+                        </c:forEach>
+                    </c:if> 
+                </div>
                 <div class="count-galery">
                     <ul>
-                        <li><i class="icon-comment"></i> 5</li>
-                        <li><i class="icon-download-alt"></i> 7</li>
-                        <li><i class="icon-star"></i> 2</li>
-                        <li><i class="icon-eye-open"></i> 20</li>
+                        <li><i class="icon-comment"></i>${image.comment}</li>
+                        <li><i class="icon-download-alt"></i>${image.downloads}</li>
+                        <li><i class="icon-star"></i>${image.likes}</li>
+                        <li><i class="icon-eye-open"></i>${image.shares}</li>
                     </ul>
                 </div>
                 <div class="tags-galery">
-                    <p><i class="icon-tags"></i> Tags : <a href="#">Building</a>, <a href="#">Tower</a>, 
-                    <a href="#">Eifel</a>, <a href="#">Wonders of the world</a>, <a href="#">Miracle</a></p>
+                    <p><i class="icon-tags">
+                         <c:if test="${!empty user.images}">
+                                <c:forEach items="${user.images}" var="userI">
+                                </i> Tags : <a href="#">${image.keywords}</a>,
+                                </c:forEach>
+                           </c:if> 
+                    </p>
                 </div>
             </div>
             </div>

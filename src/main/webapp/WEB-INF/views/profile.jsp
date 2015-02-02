@@ -10,7 +10,6 @@
     <head>
         <title>ENSA Gallery</title>
         <%@ include file="header.jsp" %>
-        
     </head>
     <body>
         <%@include file="body_header.jsp"%>
@@ -32,7 +31,7 @@
                             <c:if test="${!empty user.images}">
                                 <c:forEach items="${user.images}" var="userI">
                                 <div class="span2">
-                                    <a href="#" class="thumbnail"><img src="${userI.uqrl}" alt="" /></a>
+                                    <a href="/SpringMVCHibernate/detail/${userI.id}" class="thumbnail"><img src="${userI.uqrl}" alt="" /></a>
                                 </div>
                                 </c:forEach>
                             </c:if> 

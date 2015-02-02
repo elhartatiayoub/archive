@@ -17,5 +17,7 @@ public interface ImageDao {
         public Image getImageById(int id);
         public List<Image> getAllImages();
 	public void removeImage(int id);
+        public List<Image> getDownloadedImages();
+        public List<Image> getLikedImages();
     
 }

@@ -74,6 +74,12 @@ public class RootController {
 
     }
     
+    @RequestMapping("/detail")
+    public String detail() {
+        return "detail";
+
+    }
+    
 
     
       @RequestMapping("/account_setting")
